@@ -1,0 +1,6 @@
+# 源材料（非网页内容）
+club-material/
+
+# OS files
+.DS_Store
+Thumbs.db

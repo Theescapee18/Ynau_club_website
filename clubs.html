@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>云南农业大学 · 学生社团导航</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1B4F72;
+      --primary-dark: #0D2F4F;
+      --primary-light: #2E86C1;
+      --accent: #2ECC71;
+      --accent-dark: #1A9B52;
+      --dark: #1C2833;
+      --dark-surface: #273746;
+      --text-light: #F8F9FA;
+      --text-muted: #ABB2B9;
+      --bg-light: #F7F9FC;
+      --bg-section: #EBF0F5;
+      --cat-sxzz: #C0392B;
+      --cat-zygy: #1ABC9C;
+      --cat-whty: #2980B9;
+      --cat-zlhz: #8E44AD;
+      --cat-xskx: #E67E22;
+      --cat-cxcy: #F1C40F;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      color: #333;
+      background: var(--bg-light);
+      overflow-x: hidden;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg-img {
+      position: absolute; inset: 0;
+      background: url('hero-bg.jpg') center top/cover no-repeat;
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,0.15);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 5px 20px;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      font-size: 11px;
+      letter-spacing: 4px;
+      border-radius: 3px;
+      margin-bottom: 16px;
+      animation: fadeInUp 0.8s 0.2s both;
+      background: rgba(255,255,255,0.8);
+    }
+    .hero-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      color: var(--dark);
+      margin-bottom: 8px;
+      animation: fadeInUp 0.8s 0.4s both;
+      text-shadow: 0 1px 8px rgba(255,255,255,0.6);
+    }
+    .hero-title .gold { color: var(--primary); }
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--dark-surface);
+      letter-spacing: 4px;
+      animation: fadeInUp 0.8s 0.6s both;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 20px;
+      animation: fadeInUp 0.8s 0.8s both;
+    }
+    .hero-stat {
+      text-align: center;
+    }
+    .hero-stat-num {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 13px;
+      color: var(--dark-surface);
+      margin-top: 6px;
+      letter-spacing: 2px;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========== FILTER BAR ========== */
+    .filter-section {
+      background: #fff;
+      padding: 24px 60px;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .filter-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      max-width: 1400px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    .filter-label {
+      font-size: 13px;
+      color: #888;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+    .filter-btns {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 6px 16px;
+      border: 1px solid #C8DCF0;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #5A7BA6;
+      background: #F4F9FF;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .filter-btn:hover {
+      border-color: var(--primary-light);
+      color: var(--primary);
+      background: #E8F2FF;
+    }
+    .filter-btn.active {
+      background: #D6EAFB;
+      border-color: #7EB8E0;
+      color: var(--primary);
+    }
+    .search-box {
+      margin-left: auto;
+      position: relative;
+    }
+    .search-box input {
+      padding: 7px 14px 7px 34px;
+      border: 1px solid #C8DCF0;
+      border-radius: 6px;
+      font-size: 13px;
+      width: 220px;
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: inherit;
+      background: #F4F9FF;
+    }
+    .search-box input:focus { border-color: var(--primary-light); }
+    .search-box::before {
+      content: '⌕';
+      position: absolute;
+      left: 12px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #aaa;
+    }
+
+    /* ========== CLUBS GRID ========== */
+    .clubs-section {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 60px 80px;
+    }
+    .category-block {
+      margin-bottom: 12px;
+      border: 1px solid #e4e8ee;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 24px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+      background: #FAFCFE;
+    }
+    .category-header:hover {
+      background: #F0F6FD;
+    }
+    .category-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .category-header h2 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark);
+      flex: 1;
+    }
+    .category-count {
+      font-size: 12px;
+      color: #5A7BA6;
+      background: #E8F2FF;
+      padding: 2px 10px;
+      border-radius: 6px;
+    }
+    .category-arrow {
+      width: 20px; height: 20px;
+      display: flex; align-items: center; justify-content: center;
+      color: #99B5D4;
+      font-size: 12px;
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+    .category-block.open .category-arrow {
+      transform: rotate(180deg);
+    }
+    .category-block.open .category-header {
+      border-bottom: 1px solid #e4e8ee;
+    }
+    .clubs-grid-wrapper {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .category-block.open .clubs-grid-wrapper {
+      max-height: 2000px;
+    }
+    .clubs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+      padding: 20px 24px;
+    }
+    .club-card {
+      background: #fff;
+      border: 1px solid #e0e4e8;
+      border-radius: 6px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .club-card:hover {
+      border-color: var(--primary-light);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+      transform: translateY(-2px);
+    }
+    .club-rank {
+      width: 30px; height: 30px;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 600; color: #6BA3D6;
+      flex-shrink: 0;
+      background: #E8F2FF;
+      border: 1px solid #C8DCF0;
+    }
+    a.club-card {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+    }
+    a.club-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 16px rgba(46,204,113,0.15);
+    }
+    .club-link-badge {
+      font-size: 11px;
+      padding: 1px 8px;
+      border-radius: 2px;
+      background: var(--accent);
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+    .club-info { flex: 1; min-width: 0; }
+    .club-name {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--dark);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .club-meta {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .club-tag {
+      font-size: 11px;
+      padding: 1px 8px;
+      border-radius: 2px;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+    .tag-sxzz { background: var(--cat-sxzz); }
+    .tag-zygy { background: var(--cat-zygy); }
+    .tag-whty { background: var(--cat-whty); }
+    .tag-zlhz { background: var(--cat-zlhz); }
+    .tag-xskx { background: var(--cat-xskx); }
+    .tag-cxcy { background: var(--cat-cxcy); }
+    .dot-sxzz { background: var(--cat-sxzz); }
+    .dot-zygy { background: var(--cat-zygy); }
+    .dot-whty { background: var(--cat-whty); }
+    .dot-zlhz { background: var(--cat-zlhz); }
+    .dot-xskx { background: var(--cat-xskx); }
+    .dot-cxcy { background: var(--cat-cxcy); }
+
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: #aaa;
+      font-size: 15px;
+      display: none;
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      background: #1C2833;
+      padding: 32px 60px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      letter-spacing: 1px;
+      border-top: 2px solid var(--primary);
+    }
+    .footer .gold { color: var(--primary-light); }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .filter-section { padding: 16px 30px; }
+      .clubs-section { padding: 30px 30px 60px; }
+    }
+    @media (max-width: 768px) {
+      .filter-section { padding: 16px 20px; }
+      .clubs-section { padding: 20px 20px 40px; }
+      .hero-stats { gap: 30px; }
+      .hero-stat-num { font-size: 32px; }
+      .clubs-grid { grid-template-columns: 1fr; }
+      .search-box { margin-left: 0; width: 100%; }
+      .search-box input { width: 100%; }
+      .filter-row { gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">YUNNAN AGRICULTURAL UNIVERSITY</div>
+    <h1 class="hero-title">学生<span class="gold">社团</span>导航</h1>
+    <p class="hero-subtitle">百花齐放 · 社团缤纷</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">75</div>
+        <div class="hero-stat-label">社团总数</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">6</div>
+        <div class="hero-stat-label">社团类别</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-label">社团等级</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER -->
+<div class="filter-section">
+  <div class="filter-row">
+    <span class="filter-label">等级：</span>
+    <div class="filter-btns" id="levelFilter">
+      <button class="filter-btn active" data-level="all">全部</button>
+      <button class="filter-btn" data-level="一类社团">一类社团</button>
+      <button class="filter-btn" data-level="二类社团">二类社团</button>
+    </div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="搜索社团名称...">
+    </div>
+  </div>
+  <div class="filter-row" style="margin-top:12px">
+    <span class="filter-label">类别：</span>
+    <div class="filter-btns" id="catFilter">
+      <button class="filter-btn active" data-cat="all">全部</button>
+      <button class="filter-btn" data-cat="思想政治类">思想政治</button>
+      <button class="filter-btn" data-cat="志愿公益类">志愿公益</button>
+      <button class="filter-btn" data-cat="文化体育类">文化体育</button>
+      <button class="filter-btn" data-cat="自律互助类">自律互助</button>
+      <button class="filter-btn" data-cat="学术科学类">学术科学</button>
+      <button class="filter-btn" data-cat="创新创业类">创新创业</button>
+    </div>
+  </div>
+</div>
+
+<!-- CLUBS -->
+<div class="clubs-section" id="clubsSection"></div>
+<div class="no-results" id="noResults">没有找到匹配的社团</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>云南农业大学 · <span class="gold">学生社团导航</span> &nbsp;|&nbsp; 校团委指导</p>
+</footer>
+
+<script>
+const clubs = [
+  {id:1,level:"一类社团",name:"国旗护卫队",cat:"思想政治类"},
+  {id:2,level:"一类社团",name:"基层团建中心",cat:"思想政治类"},
+  {id:3,level:"一类社团",name:"青年发展中心第二课堂项目办",cat:"思想政治类"},
+  {id:4,level:"一类社团",name:"大学生学习实践延安精神小组",cat:"思想政治类"},
+  {id:5,level:"一类社团",name:"军事爱好者协会",cat:"思想政治类"},
+  {id:6,level:"一类社团",name:"易班工作站",cat:"思想政治类"},
+  {id:7,level:"一类社团",name:"耕读学社",cat:"思想政治类"},
+  {id:8,level:"一类社团",name:"清廉学社",cat:"思想政治类"},
+  {id:9,level:"一类社团",name:"大学生服务校友志愿者协会",cat:"志愿公益类"},
+  {id:10,level:"一类社团",name:"青年志愿者协会·红十字会学生分会",cat:"志愿公益类",link:"qnzyz.html"},
+  {id:11,level:"一类社团",name:"青年传媒发展中心",cat:"文化体育类"},
+  {id:12,level:"一类社团",name:"社团管理中心",cat:"文化体育类"},
+  {id:13,level:"一类社团",name:"大学生艺术团",cat:"文化体育类",link:"yst.html"},
+  {id:14,level:"一类社团",name:"大学生合唱团",cat:"文化体育类"},
+  {id:15,level:"一类社团",name:"交响乐团",cat:"文化体育类"},
+  {id:16,level:"一类社团",name:"校辩论队",cat:"文化体育类"},
+  {id:17,level:"一类社团",name:"青春之声广播站",cat:"文化体育类"},
+  {id:18,level:"一类社团",name:"校园传媒中心",cat:"文化体育类"},
+  {id:19,level:"一类社团",name:"茶艺团",cat:"文化体育类"},
+  {id:20,level:"一类社团",name:"心理协会",cat:"自律互助类"},
+  {id:21,level:"一类社团",name:"学生自我管理委员会",cat:"自律互助类"},
+  {id:22,level:"一类社团",name:"学生管理服务协会",cat:"自律互助类"},
+  {id:23,level:"一类社团",name:"学生资助与发展协会",cat:"自律互助类"},
+  {id:24,level:"一类社团",name:"云南民族农耕文化科普站",cat:"学术科学类"},
+  {id:25,level:"一类社团",name:"创新与实践教育中心",cat:"创新创业类"},
+  {id:26,level:"一类社团",name:"创业就业互助协会",cat:"创新创业类"},
+  {id:27,level:"二类社团",name:"马克思主义理论学习研究会",cat:"思想政治类"},
+  {id:28,level:"二类社团",name:"青年益教之家",cat:"志愿公益类"},
+  {id:29,level:"二类社团",name:"勤工俭学会",cat:"志愿公益类"},
+  {id:30,level:"二类社团",name:"社工之家",cat:"志愿公益类"},
+  {id:31,level:"二类社团",name:"昆明市大学生爱心家园农大分会",cat:"志愿公益类"},
+  {id:32,level:"二类社团",name:"小动物爱护者协会",cat:"志愿公益类"},
+  {id:33,level:"二类社团",name:"绿野社",cat:"志愿公益类"},
+  {id:34,level:"二类社团",name:"良师益友协会",cat:"自律互助类"},
+  {id:35,level:"二类社团",name:"民族文化交流与发展协会",cat:"文化体育类"},
+  {id:36,level:"二类社团",name:"电影协会",cat:"文化体育类"},
+  {id:37,level:"二类社团",name:"晨曦文学社",cat:"文化体育类"},
+  {id:38,level:"二类社团",name:"AU.ban操舞社团",cat:"文化体育类"},
+  {id:39,level:"二类社团",name:"HALO滑板社",cat:"文化体育类"},
+  {id:40,level:"二类社团",name:"乐跑协会",cat:"文化体育类"},
+  {id:41,level:"二类社团",name:"定向运动协会",cat:"文化体育类"},
+  {id:42,level:"二类社团",name:"健身协会",cat:"文化体育类"},
+  {id:43,level:"二类社团",name:"女子足球社",cat:"文化体育类"},
+  {id:44,level:"二类社团",name:"跳绳协会",cat:"文化体育类"},
+  {id:45,level:"二类社团",name:"排球俱乐部",cat:"文化体育类"},
+  {id:46,level:"二类社团",name:"乒乓球协会",cat:"文化体育类"},
+  {id:47,level:"二类社团",name:"足球裁判协会",cat:"文化体育类"},
+  {id:48,level:"二类社团",name:"武术协会",cat:"文化体育类"},
+  {id:49,level:"二类社团",name:"羿羽射艺协会",cat:"文化体育类"},
+  {id:50,level:"二类社团",name:"羽毛球协会",cat:"文化体育类"},
+  {id:51,level:"二类社团",name:"篮球社",cat:"文化体育类"},
+  {id:52,level:"二类社团",name:"现视研动漫社",cat:"文化体育类"},
+  {id:53,level:"二类社团",name:"惊婳国风古韵社",cat:"文化体育类"},
+  {id:54,level:"二类社团",name:"旅游协会",cat:"文化体育类"},
+  {id:55,level:"二类社团",name:"汽车爱好者协会",cat:"文化体育类"},
+  {id:56,level:"二类社团",name:"书画协会",cat:"文化体育类"},
+  {id:57,level:"二类社团",name:"摄影协会",cat:"文化体育类"},
+  {id:58,level:"二类社团",name:"演讲与口才协会",cat:"文化体育类"},
+  {id:59,level:"二类社团",name:"云咖部落",cat:"文化体育类"},
+  {id:60,level:"二类社团",name:"食为天协会",cat:"文化体育类"},
+  {id:61,level:"二类社团",name:"棋迷者协会",cat:"文化体育类"},
+  {id:62,level:"二类社团",name:"语说云农-外语社",cat:"文化体育类"},
+  {id:63,level:"二类社团",name:"手工社",cat:"文化体育类"},
+  {id:64,level:"二类社团",name:"园艺协会",cat:"文化体育类"},
+  {id:65,level:"二类社团",name:"香料香精协会",cat:"文化体育类"},
+  {id:66,level:"二类社团",name:"家电义务维修协会",cat:"学术科学类"},
+  {id:67,level:"二类社团",name:"普通话推广协会",cat:"学术科学类"},
+  {id:68,level:"二类社团",name:"农村发展研究会",cat:"学术科学类"},
+  {id:69,level:"二类社团",name:"金鸡俱乐部",cat:"学术科学类"},
+  {id:70,level:"二类社团",name:"蜜蜂学社",cat:"学术科学类"},
+  {id:71,level:"二类社团",name:"博源科技协会",cat:"学术科学类"},
+  {id:72,level:"二类社团",name:"寻野昆虫社",cat:"学术科学类"},
+  {id:73,level:"二类社团",name:"法治学习社",cat:"学术科学类"},
+  {id:74,level:"二类社团",name:"科技史读书会",cat:"学术科学类"},
+  {id:75,level:"二类社团",name:"机甲神农",cat:"学术科学类"}
+];
+
+const catMap = {
+  "思想政治类": {tag:"tag-sxzz",dot:"dot-sxzz"},
+  "志愿公益类": {tag:"tag-zygy",dot:"dot-zygy"},
+  "文化体育类": {tag:"tag-whty",dot:"dot-whty"},
+  "自律互助类": {tag:"tag-zlhz",dot:"dot-zlhz"},
+  "学术科学类": {tag:"tag-xskx",dot:"dot-xskx"},
+  "创新创业类": {tag:"tag-cxcy",dot:"dot-cxcy"}
+};
+
+const catOrder = ["思想政治类","志愿公益类","文化体育类","自律互助类","学术科学类","创新创业类"];
+
+let currentLevel = "all";
+let currentCat = "all";
+let searchText = "";
+
+function render() {
+  let filtered = clubs.filter(c => {
+    if (currentLevel !== "all" && c.level !== currentLevel) return false;
+    if (currentCat !== "all" && c.cat !== currentCat) return false;
+    if (searchText && !c.name.toLowerCase().includes(searchText.toLowerCase())) return false;
+    return true;
+  });
+
+  const section = document.getElementById('clubsSection');
+  const noResults = document.getElementById('noResults');
+
+  if (filtered.length === 0) {
+    section.innerHTML = '';
+    noResults.style.display = 'block';
+    return;
+  }
+  noResults.style.display = 'none';
+
+  // Group by category
+  const groups = {};
+  catOrder.forEach(cat => { groups[cat] = []; });
+  filtered.forEach(c => {
+    if (!groups[c.cat]) groups[c.cat] = [];
+    groups[c.cat].push(c);
+  });
+
+  let html = '';
+  catOrder.forEach(cat => {
+    const items = groups[cat];
+    if (!items || items.length === 0) return;
+    const info = catMap[cat];
+    html += `<div class="category-block" data-cat="${cat}">
+      <div class="category-header" onclick="toggleDrawer(this)">
+        <div class="category-dot ${info.dot}"></div>
+        <h2>${cat}</h2>
+        <span class="category-count">${items.length} 个社团</span>
+        <div class="category-arrow">▼</div>
+      </div>
+      <div class="clubs-grid-wrapper">
+      <div class="clubs-grid">`;
+    items.forEach(c => {
+      const isLinked = !!c.link;
+      const cardTag = isLinked ? 'a' : 'div';
+      const linkAttr = isLinked ? ` href="${c.link}" class="club-card club-card-link"` : ` class="club-card"`;
+      const linkBadge = isLinked ? '<span class="club-link-badge">查看官网 →</span>' : '';
+      html += `<${cardTag}${linkAttr}>
+        <div class="club-rank">${c.id}</div>
+        <div class="club-info">
+          <div class="club-name" title="${c.name}">${c.name}</div>
+          ${isLinked ? '<div class="club-meta">' + linkBadge + '</div>' : ''}
+        </div>
+      </${cardTag}>`;
+    });
+    html += `</div></div></div>`;
+  });
+
+  section.innerHTML = html;
+}
+
+// Drawer toggle
+function toggleDrawer(headerEl) {
+  const block = headerEl.closest('.category-block');
+  block.classList.toggle('open');
+}
+
+// Level filter
+document.getElementById('levelFilter').addEventListener('click', e => {
+  if (!e.target.classList.contains('filter-btn')) return;
+  document.querySelectorAll('#levelFilter .filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  currentLevel = e.target.dataset.level;
+  render();
+});
+
+// Category filter
+document.getElementById('catFilter').addEventListener('click', e => {
+  if (!e.target.classList.contains('filter-btn')) return;
+  document.querySelectorAll('#catFilter .filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  currentCat = e.target.dataset.cat;
+  render();
+});
+
+// Search
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchText = e.target.value;
+  render();
+});
+
+// Initial render
+render();
+</script>
+
+</body>
+</html>
