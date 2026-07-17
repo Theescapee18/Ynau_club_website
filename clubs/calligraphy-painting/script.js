@@ -7,10 +7,20 @@ const mobileNav = document.getElementById("mobileNav");
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightboxImage");
 const lightboxCaption = document.getElementById("lightboxCaption");
+const inkSections = document.querySelectorAll(".about-section, .gallery-section, .activities-section");
 
 function updateScrollState() {
   header.classList.toggle("scrolled", window.scrollY > 50);
   backTop.classList.toggle("visible", window.scrollY > 600);
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const viewportCenter = window.innerHeight / 2;
+    inkSections.forEach((section) => {
+      const sectionCenter = section.getBoundingClientRect().top + section.offsetHeight / 2;
+      const offset = Math.max(-72, Math.min(72, (viewportCenter - sectionCenter) * 0.16));
+      section.style.setProperty("--ink-drift", `${offset}px`);
+    });
+  }
 }
 
 window.addEventListener("scroll", updateScrollState, { passive: true });
