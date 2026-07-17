@@ -23,6 +23,8 @@
   --radius: 8px;
 }
 
+html { scroll-behavior: smooth; }
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 
@@ -67,6 +69,8 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .desktop-nav a:hover { color: var(--primary); }
 .desktop-nav a:hover::after { width: 100%; }
+.desktop-nav a,
+.mobile-nav a { font-weight: 700; }
 
 /* ========== HEADER ========== */
 .site-header {
@@ -568,23 +572,16 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--text-light);
   line-height: 1.9;
 }
-.activity-btn {
+.activity-link {
   display: inline-block;
-  margin-top: 18px;
-  padding: 10px 24px;
-  background: var(--primary);
-  color: #fff;
+  margin-top: 14px;
+  color: var(--primary);
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  border-radius: var(--radius);
-  transition: all 0.3s;
-  width: fit-content;
+  transition: color 0.2s;
 }
-.activity-btn:hover {
-  background: var(--primary-dark);
-  transform: translateY(-2px);
-}
+.activity-link:hover { color: var(--accent); }
 
 /* ========== HONORS ========== */
 .section-honors { background: var(--bg); }
