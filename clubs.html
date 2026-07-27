@@ -39,20 +39,45 @@
     /* ========== HERO ========== */
     .hero {
       position: relative;
-      height: 380px;
+      height: clamp(400px, 42.85vw, 680px);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      isolation: isolate;
     }
     .hero-bg-img {
       position: absolute; inset: 0;
-      background: url('hero-bg.jpg') center top/cover no-repeat;
+      overflow: hidden;
+      background: #EAF1F7;
       z-index: 0;
+    }
+    .hero-bg-img::before,
+    .hero-bg-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('hero-bg.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .hero-bg-img::before {
+      inset: -30px;
+      background-size: cover;
+      filter: blur(22px) saturate(0.8);
+      opacity: 0.55;
+      transform: scale(1.08);
+    }
+    .hero-bg-img::after {
+      background-size: contain;
+      transform: scale(1.025);
+      animation: heroImageIn 0.9s ease-out forwards;
     }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: rgba(255,255,255,0.15);
+      background:
+        linear-gradient(90deg, rgba(247,250,252,0.62), rgba(255,255,255,0.1) 23%, rgba(255,255,255,0.1) 77%, rgba(247,250,252,0.62)),
+        rgba(255,255,255,0.08);
       z-index: 1;
     }
     .hero-content {
@@ -68,7 +93,7 @@
       letter-spacing: 4px;
       border-radius: 3px;
       margin-bottom: 16px;
-      animation: fadeInUp 0.8s 0.2s both;
+      animation: fadeInUp 0.6s 0.15s both;
       background: rgba(255,255,255,0.8);
     }
     .hero-title {
@@ -77,7 +102,7 @@
       font-weight: 900;
       color: var(--dark);
       margin-bottom: 8px;
-      animation: fadeInUp 0.8s 0.4s both;
+      animation: fadeInUp 0.6s 0.25s both;
       text-shadow: 0 1px 8px rgba(255,255,255,0.6);
     }
     .hero-title .gold { color: var(--primary); }
@@ -85,14 +110,14 @@
       font-size: 14px;
       color: var(--dark-surface);
       letter-spacing: 4px;
-      animation: fadeInUp 0.8s 0.6s both;
+      animation: fadeInUp 0.6s 0.35s both;
     }
     .hero-stats {
       display: flex;
       justify-content: center;
       gap: 40px;
       margin-top: 20px;
-      animation: fadeInUp 0.8s 0.8s both;
+      animation: fadeInUp 0.6s 0.45s both;
     }
     .hero-stat {
       text-align: center;
@@ -114,6 +139,10 @@
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    @keyframes heroImageIn {
+      from { opacity: 0.45; transform: scale(1.06); }
+      to { opacity: 1; transform: scale(1.025); }
+    }
 
     /* ========== FILTER BAR ========== */
     .filter-section {
@@ -123,6 +152,16 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.35s ease-out, transform 0.35s ease-out, box-shadow 0.2s;
+    }
+    .filter-section.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+    .filter-section.is-stuck {
+      box-shadow: 0 8px 24px rgba(13,47,79,0.08);
     }
     .filter-row {
       display: flex;
@@ -153,6 +192,7 @@
       cursor: pointer;
       transition: all 0.2s;
       font-family: inherit;
+      min-height: 40px;
     }
     .filter-btn:hover {
       border-color: var(--primary-light);
@@ -164,6 +204,7 @@
       border-color: #7EB8E0;
       color: var(--primary);
     }
+    .filter-btn:active { transform: scale(0.97); }
     .search-box {
       margin-left: auto;
       position: relative;
@@ -203,6 +244,8 @@
       background: #fff;
     }
     .category-header {
+      width: 100%;
+      border: 0;
       display: flex;
       align-items: center;
       gap: 14px;
@@ -211,6 +254,8 @@
       user-select: none;
       transition: background 0.2s;
       background: #FAFCFE;
+      font-family: inherit;
+      text-align: left;
     }
     .category-header:hover {
       background: #F0F6FD;
@@ -220,7 +265,7 @@
       border-radius: 50%;
       flex-shrink: 0;
     }
-    .category-header h2 {
+    .category-title {
       font-family: 'Noto Serif SC', serif;
       font-size: 18px;
       font-weight: 700;
@@ -249,18 +294,46 @@
       border-bottom: 1px solid #e4e8ee;
     }
     .clubs-grid-wrapper {
-      max-height: 0;
+      display: grid;
+      grid-template-rows: 0fr;
       overflow: hidden;
-      transition: max-height 0.4s ease;
+      transition: grid-template-rows 0.4s ease;
     }
     .category-block.open .clubs-grid-wrapper {
-      max-height: 2000px;
+      grid-template-rows: 1fr;
     }
     .clubs-grid {
+      min-height: 0;
+      overflow: hidden;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 14px;
+      padding: 0 24px;
+      visibility: hidden;
+      pointer-events: none;
+      transition: padding 0.4s ease, visibility 0s linear 0.4s;
+    }
+    .category-block.open .clubs-grid {
       padding: 20px 24px;
+      visibility: visible;
+      pointer-events: auto;
+      transition: padding 0.4s ease;
+    }
+    .category-block.category-enter {
+      animation: categoryEnter 0.34s ease-out both;
+      animation-delay: var(--delay, 0ms);
+    }
+    @keyframes categoryEnter {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: none; }
+    }
+    .category-block.open .club-card {
+      animation: cardEnter 0.28s ease-out both;
+      animation-delay: calc(var(--card-index, 0) * 35ms);
+    }
+    @keyframes cardEnter {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
     }
     .club-card {
       background: #fff;
@@ -360,11 +433,27 @@
 
     /* ========== RESPONSIVE ========== */
     @media (max-width: 1024px) {
+      .hero { height: clamp(400px, 48vw, 520px); }
       .filter-section { padding: 16px 30px; }
       .clubs-section { padding: 30px 30px 60px; }
     }
     @media (max-width: 768px) {
-      .filter-section { padding: 16px 20px; }
+      .hero { height: 520px; }
+      .hero-bg-img::before { opacity: 0.4; }
+      .hero-bg-img::after {
+        background-size: cover;
+        background-position: center;
+      }
+      .hero-overlay {
+        background: linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0.68));
+      }
+      .hero-content { padding: 0 20px; }
+      .hero-badge { letter-spacing: 2px; }
+      .filter-section {
+        position: relative;
+        top: auto;
+        padding: 16px 20px;
+      }
       .clubs-section { padding: 20px 20px 40px; }
       .hero-stats { gap: 30px; }
       .hero-stat-num { font-size: 32px; }
@@ -372,6 +461,23 @@
       .search-box { margin-left: 0; width: 100%; }
       .search-box input { width: 100%; }
       .filter-row { gap: 10px; }
+    }
+    @media (max-width: 480px) {
+      .hero { height: 500px; }
+      .hero-title { font-size: 34px; }
+      .hero-subtitle { letter-spacing: 3px; }
+      .hero-stats { gap: 24px; }
+      .hero-stat-num { font-size: 28px; }
+      .hero-stat-label { font-size: 12px; letter-spacing: 1px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .filter-section { opacity: 1; transform: none; }
     }
   </style>
 </head>
@@ -387,15 +493,15 @@
     <p class="hero-subtitle">百花齐放 · 社团缤纷</p>
     <div class="hero-stats">
       <div class="hero-stat">
-        <div class="hero-stat-num">75</div>
+        <div class="hero-stat-num" data-count="75">75</div>
         <div class="hero-stat-label">社团总数</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num">6</div>
+        <div class="hero-stat-num" data-count="6">6</div>
         <div class="hero-stat-label">社团类别</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-num" data-count="2">2</div>
         <div class="hero-stat-label">社团等级</div>
       </div>
     </div>
@@ -440,81 +546,82 @@
 
 <script>
 const clubs = [
-  {id:1,level:"一类社团",name:"国旗护卫队",cat:"思想政治类"},
-  {id:2,level:"一类社团",name:"基层团建中心",cat:"思想政治类"},
-  {id:3,level:"一类社团",name:"青年发展中心第二课堂项目办",cat:"思想政治类"},
-  {id:4,level:"一类社团",name:"大学生学习实践延安精神小组",cat:"思想政治类"},
-  {id:5,level:"一类社团",name:"军事爱好者协会",cat:"思想政治类"},
-  {id:6,level:"一类社团",name:"易班工作站",cat:"思想政治类"},
-  {id:7,level:"一类社团",name:"耕读学社",cat:"思想政治类"},
-  {id:8,level:"一类社团",name:"清廉学社",cat:"思想政治类"},
-  {id:9,level:"一类社团",name:"大学生服务校友志愿者协会",cat:"志愿公益类"},
-  {id:10,level:"一类社团",name:"青年志愿者协会·红十字会学生分会",cat:"志愿公益类",link:"qnzyz.html"},
-  {id:11,level:"一类社团",name:"青年传媒发展中心",cat:"文化体育类"},
-  {id:12,level:"一类社团",name:"社团管理中心",cat:"文化体育类"},
-  {id:13,level:"一类社团",name:"大学生艺术团",cat:"文化体育类",link:"yst.html"},
-  {id:14,level:"一类社团",name:"大学生合唱团",cat:"文化体育类"},
+  {id:1,level:"一类社团",name:"国旗护卫队",cat:"思想政治类",link:"clubs/national-flag-guard/index.html"},
+  {id:2,level:"一类社团",name:"基层团建中心",cat:"思想政治类",link:"clubs/grassroots-league-construction/index.html"},
+  {id:3,level:"一类社团",name:"青年发展中心第二课堂项目办",cat:"思想政治类",link:"clubs/second-classroom-project/index.html"},
+  {id:4,level:"一类社团",name:"大学生学习实践延安精神小组",cat:"思想政治类",link:"clubs/yanan-spirit-study-group/index.html"},
+  {id:5,level:"一类社团",name:"军事爱好者协会",cat:"思想政治类",link:"clubs/military-enthusiasts-association/index.html"},
+  {id:6,level:"一类社团",name:"易班工作站",cat:"思想政治类",link:"clubs/yiban-student-workstation/index.html"},
+  {id:7,level:"一类社团",name:"耕读学社",cat:"思想政治类",link:"clubs/gengdu-society/index.html"},
+  {id:8,level:"一类社团",name:"清廉学社",cat:"思想政治类",link:"clubs/qing-lian-xue-she/index.html"},
+  {id:9,level:"一类社团",name:"大学生服务校友志愿者协会",cat:"志愿公益类",link:"clubs/alumni-volunteer-association/index.html"},
+  {id:10,level:"一类社团",name:"青年志愿者协会·红十字会学生分会",cat:"志愿公益类",link:"clubs/qnzyz/index.html"},
+  {id:11,level:"一类社团",name:"青年传媒发展中心",cat:"文化体育类",link:"clubs/youth-media/index.html"},
+  {id:12,level:"一类社团",name:"社团管理中心",cat:"文化体育类",link:"clubs/association-management-center/index.html"},
+  {id:13,level:"一类社团",name:"大学生艺术团",cat:"文化体育类",link:"clubs/yst/index.html"},
+  {id:14,level:"一类社团",name:"大学生合唱团",cat:"文化体育类",link:"clubs/choir/index.html"},
   {id:15,level:"一类社团",name:"交响乐团",cat:"文化体育类"},
-  {id:16,level:"一类社团",name:"校辩论队",cat:"文化体育类"},
-  {id:17,level:"一类社团",name:"青春之声广播站",cat:"文化体育类"},
-  {id:18,level:"一类社团",name:"校园传媒中心",cat:"文化体育类"},
-  {id:19,level:"一类社团",name:"茶艺团",cat:"文化体育类"},
-  {id:20,level:"一类社团",name:"心理协会",cat:"自律互助类"},
-  {id:21,level:"一类社团",name:"学生自我管理委员会",cat:"自律互助类"},
-  {id:22,level:"一类社团",name:"学生管理服务协会",cat:"自律互助类"},
-  {id:23,level:"一类社团",name:"学生资助与发展协会",cat:"自律互助类"},
+  {id:16,level:"一类社团",name:"校辩论队",cat:"文化体育类",link:"clubs/debate-team/index.html"},
+  {id:17,level:"一类社团",name:"青春之声广播站",cat:"文化体育类",link:"clubs/youth-voice-radio/index.html"},
+  {id:18,level:"一类社团",name:"校园传媒中心",cat:"文化体育类",link:"clubs/campus-media-center/index.html"},
+  {id:19,level:"一类社团",name:"茶艺团",cat:"文化体育类",link:"clubs/tea-club/index.html"},
+  {id:20,level:"一类社团",name:"心理协会",cat:"自律互助类",link:"clubs/psychological-association/index.html"},
+  {id:21,level:"一类社团",name:"学生自我管理委员会",cat:"自律互助类",link:"clubs/student-self-management-committee/index.html"},
+  {id:22,level:"一类社团",name:"学生管理服务协会",cat:"自律互助类",link:"clubs/student-management-service-association/index.html"},
+  {id:23,level:"一类社团",name:"学生资助与发展协会",cat:"自律互助类",link:"clubs/student-aid-development-association/index.html"},
   {id:24,level:"一类社团",name:"云南民族农耕文化科普站",cat:"学术科学类"},
-  {id:25,level:"一类社团",name:"创新与实践教育中心",cat:"创新创业类"},
-  {id:26,level:"一类社团",name:"创业就业互助协会",cat:"创新创业类"},
-  {id:27,level:"二类社团",name:"马克思主义理论学习研究会",cat:"思想政治类"},
-  {id:28,level:"二类社团",name:"青年益教之家",cat:"志愿公益类"},
-  {id:29,level:"二类社团",name:"勤工俭学会",cat:"志愿公益类"},
-  {id:30,level:"二类社团",name:"社工之家",cat:"志愿公益类"},
-  {id:31,level:"二类社团",name:"昆明市大学生爱心家园农大分会",cat:"志愿公益类"},
-  {id:32,level:"二类社团",name:"小动物爱护者协会",cat:"志愿公益类"},
-  {id:33,level:"二类社团",name:"绿野社",cat:"志愿公益类"},
+  {id:25,level:"一类社团",name:"创新与实践中心",cat:"创新创业类",link:"clubs/innovation-practice-center/index.html"},
+  {id:26,level:"一类社团",name:"就业创业互助协会",cat:"创新创业类",link:"clubs/employment-entrepreneurship-association/index.html"},
+  {id:27,level:"二类社团",name:"马克思主义理论学习研究会",cat:"思想政治类",link:"clubs/marxism-theory-study-association/index.html"},
+  {id:28,level:"二类社团",name:"青年益教之家",cat:"志愿公益类",link:"clubs/youth-education-home/index.html"},
+  {id:29,level:"二类社团",name:"勤工俭学会",cat:"志愿公益类",link:"clubs/qin-gong-jian-xue-hui/index.html"},
+  {id:30,level:"二类社团",name:"社工之家",cat:"志愿公益类",link:"clubs/social-work-home/index.html"},
+  {id:31,level:"二类社团",name:"昆明市大学生爱心家园协会",cat:"志愿公益类",link:"clubs/love-home-association/index.html"},
+  {id:32,level:"二类社团",name:"小动物爱护者协会",cat:"志愿公益类",link:"clubs/small-animal-lovers-association/index.html"},
+  {id:33,level:"二类社团",name:"绿野社",cat:"志愿公益类",link:"clubs/green-field-society/index.html"},
   {id:34,level:"二类社团",name:"良师益友协会",cat:"自律互助类"},
-  {id:35,level:"二类社团",name:"民族文化交流与发展协会",cat:"文化体育类"},
-  {id:36,level:"二类社团",name:"电影协会",cat:"文化体育类"},
-  {id:37,level:"二类社团",name:"晨曦文学社",cat:"文化体育类"},
-  {id:38,level:"二类社团",name:"AU.ban操舞社团",cat:"文化体育类"},
-  {id:39,level:"二类社团",name:"HALO滑板社",cat:"文化体育类"},
-  {id:40,level:"二类社团",name:"乐跑协会",cat:"文化体育类"},
-  {id:41,level:"二类社团",name:"定向运动协会",cat:"文化体育类"},
-  {id:42,level:"二类社团",name:"健身协会",cat:"文化体育类"},
-  {id:43,level:"二类社团",name:"女子足球社",cat:"文化体育类"},
-  {id:44,level:"二类社团",name:"跳绳协会",cat:"文化体育类"},
-  {id:45,level:"二类社团",name:"排球俱乐部",cat:"文化体育类"},
-  {id:46,level:"二类社团",name:"乒乓球协会",cat:"文化体育类"},
-  {id:47,level:"二类社团",name:"足球裁判协会",cat:"文化体育类"},
-  {id:48,level:"二类社团",name:"武术协会",cat:"文化体育类"},
-  {id:49,level:"二类社团",name:"羿羽射艺协会",cat:"文化体育类"},
-  {id:50,level:"二类社团",name:"羽毛球协会",cat:"文化体育类"},
-  {id:51,level:"二类社团",name:"篮球社",cat:"文化体育类"},
-  {id:52,level:"二类社团",name:"现视研动漫社",cat:"文化体育类"},
-  {id:53,level:"二类社团",name:"惊婳国风古韵社",cat:"文化体育类"},
-  {id:54,level:"二类社团",name:"旅游协会",cat:"文化体育类"},
-  {id:55,level:"二类社团",name:"汽车爱好者协会",cat:"文化体育类"},
-  {id:56,level:"二类社团",name:"书画协会",cat:"文化体育类"},
-  {id:57,level:"二类社团",name:"摄影协会",cat:"文化体育类"},
-  {id:58,level:"二类社团",name:"演讲与口才协会",cat:"文化体育类"},
-  {id:59,level:"二类社团",name:"云咖部落",cat:"文化体育类"},
-  {id:60,level:"二类社团",name:"食为天协会",cat:"文化体育类"},
-  {id:61,level:"二类社团",name:"棋迷者协会",cat:"文化体育类"},
-  {id:62,level:"二类社团",name:"语说云农-外语社",cat:"文化体育类"},
-  {id:63,level:"二类社团",name:"手工社",cat:"文化体育类"},
-  {id:64,level:"二类社团",name:"园艺协会",cat:"文化体育类"},
-  {id:65,level:"二类社团",name:"香料香精协会",cat:"文化体育类"},
-  {id:66,level:"二类社团",name:"家电义务维修协会",cat:"学术科学类"},
+  {id:35,level:"二类社团",name:"民族文化交流与发展协会",cat:"文化体育类",link:"clubs/ethnic-culture-exchange-association/index.html"},
+  {id:36,level:"二类社团",name:"电影协会",cat:"文化体育类",link:"clubs/film-association/index.html"},
+  {id:37,level:"二类社团",name:"晨曦文学社",cat:"文化体育类",link:"clubs/chenxi-literature/index.html"},
+  {id:38,level:"二类社团",name:"AU.ban操舞社团",cat:"文化体育类",link:"clubs/au-ban-dance/index.html"},
+  {id:39,level:"二类社团",name:"HALO滑板社",cat:"文化体育类",link:"clubs/halo-skateboard/index.html"},
+  {id:40,level:"二类社团",name:"乐跑协会",cat:"文化体育类",link:"clubs/running-association/index.html"},
+  {id:41,level:"二类社团",name:"定向运动协会",cat:"文化体育类",link:"clubs/orienteering-sports/index.html"},
+  {id:42,level:"二类社团",name:"健身协会",cat:"文化体育类",link:"clubs/fitness-association/index.html"},
+  {id:43,level:"二类社团",name:"女子足球社",cat:"文化体育类",link:"clubs/women-football-club/index.html"},
+  {id:44,level:"二类社团",name:"跳绳协会",cat:"文化体育类",link:"clubs/jump-rope-association/index.html"},
+  {id:45,level:"二类社团",name:"排球俱乐部",cat:"文化体育类",link:"clubs/volleyball-club/index.html"},
+  {id:46,level:"二类社团",name:"乒乓球协会",cat:"文化体育类",link:"clubs/table-tennis-association/index.html"},
+  {id:47,level:"二类社团",name:"足球裁判协会",cat:"文化体育类",link:"clubs/football-referee-association/index.html"},
+  {id:48,level:"二类社团",name:"武术协会",cat:"文化体育类",link:"clubs/wushu-association/index.html"},
+  {id:49,level:"二类社团",name:"羿羽射艺协会",cat:"文化体育类",link:"clubs/yi-yu-archery/index.html"},
+  {id:50,level:"二类社团",name:"羽毛球协会",cat:"文化体育类",link:"clubs/badminton-association/index.html"},
+  {id:51,level:"二类社团",name:"篮球社",cat:"文化体育类",link:"clubs/basketball-club/index.html"},
+  {id:52,level:"二类社团",name:"现视研动漫社",cat:"文化体育类",link:"clubs/genshiken-anime/index.html"},
+  {id:53,level:"二类社团",name:"惊婳国风古韵社",cat:"文化体育类",link:"clubs/jing-hua-gufeng/index.html"},
+  {id:54,level:"二类社团",name:"旅游协会",cat:"文化体育类",link:"clubs/travel-association/index.html"},
+  {id:55,level:"二类社团",name:"汽车爱好者协会",cat:"文化体育类",link:"clubs/auto-enthusiasts-association/index.html"},
+  {id:56,level:"二类社团",name:"书画协会",cat:"文化体育类",link:"clubs/calligraphy-painting/index.html"},
+  {id:57,level:"二类社团",name:"摄影协会",cat:"文化体育类",link:"clubs/photography-association/index.html"},
+  {id:58,level:"二类社团",name:"演讲与口才协会",cat:"文化体育类",link:"clubs/speech-and-eloquence-association/index.html"},
+  {id:59,level:"二类社团",name:"云咖部落",cat:"文化体育类",link:"clubs/coffee-tribe/index.html"},
+  {id:60,level:"二类社团",name:"食为天协会",cat:"文化体育类",link:"clubs/food-for-heaven-association/index.html"},
+  {id:61,level:"二类社团",name:"棋迷者协会",cat:"文化体育类",link:"clubs/chess-enthusiasts-association/index.html"},
+  {id:62,level:"二类社团",name:"语说云农-外语社",cat:"文化体育类",link:"clubs/yu-shuo-yun-nong-language-society/index.html"},
+  {id:63,level:"二类社团",name:"手工社",cat:"文化体育类",link:"clubs/manual-club/index.html"},
+  {id:64,level:"二类社团",name:"艺趣社",cat:"文化体育类",link:"clubs/yi-qu-society/index.html"},
+  {id:65,level:"二类社团",name:"香料香精协会",cat:"文化体育类",link:"clubs/flavor-fragrance-association/index.html"},
+  {id:66,level:"二类社团",name:"家电义务维修协会",cat:"学术科学类",link:"clubs/home-appliance-repair-association/index.html"},
   {id:67,level:"二类社团",name:"普通话推广协会",cat:"学术科学类"},
-  {id:68,level:"二类社团",name:"农村发展研究会",cat:"学术科学类"},
-  {id:69,level:"二类社团",name:"金鸡俱乐部",cat:"学术科学类"},
-  {id:70,level:"二类社团",name:"蜜蜂学社",cat:"学术科学类"},
-  {id:71,level:"二类社团",name:"博源科技协会",cat:"学术科学类"},
-  {id:72,level:"二类社团",name:"寻野昆虫社",cat:"学术科学类"},
-  {id:73,level:"二类社团",name:"法治学习社",cat:"学术科学类"},
-  {id:74,level:"二类社团",name:"科技史读书会",cat:"学术科学类"},
-  {id:75,level:"二类社团",name:"机甲神农",cat:"学术科学类"}
+  {id:68,level:"二类社团",name:"农村发展研究会",cat:"学术科学类",link:"clubs/rural-development-research-association/index.html"},
+  {id:69,level:"二类社团",name:"云南民族农耕文化科普站",cat:"学术科学类",link:"clubs/ethnic-farming-culture-popularization-station/index.html"},
+  {id:70,level:"二类社团",name:"金鸡俱乐部",cat:"学术科学类",link:"clubs/golden-rooster-club/index.html"},
+  {id:71,level:"二类社团",name:"蜜蜂学社",cat:"学术科学类",link:"clubs/bee-society/index.html"},
+  {id:72,level:"二类社团",name:"博源科技协会",cat:"学术科学类",link:"clubs/bo-yuan-tech/index.html"},
+  {id:73,level:"二类社团",name:"寻野昆虫社",cat:"学术科学类",link:"clubs/xunye-insect-society/index.html"},
+  {id:74,level:"二类社团",name:"法治学习社",cat:"学术科学类",link:"clubs/law-publicity-association/index.html"},
+  {id:75,level:"二类社团",name:"科技史读书会",cat:"学术科学类",link:"clubs/tech-history-reading/index.html"},
+  {id:76,level:"二类社团",name:"机甲神农",cat:"学术科学类",link:"clubs/mecha-shennong/index.html"}
 ];
 
 const catMap = {
@@ -559,23 +666,24 @@ function render() {
   });
 
   let html = '';
-  catOrder.forEach(cat => {
+  catOrder.forEach((cat, groupIndex) => {
     const items = groups[cat];
     if (!items || items.length === 0) return;
     const info = catMap[cat];
-    html += `<div class="category-block" data-cat="${cat}">
-      <div class="category-header" onclick="toggleDrawer(this)">
+    const panelId = `club-panel-${groupIndex}`;
+    html += `<div class="category-block category-enter" data-cat="${cat}" style="--delay:${groupIndex * 45}ms">
+      <button class="category-header" type="button" aria-expanded="false" aria-controls="${panelId}" onclick="toggleDrawer(this)">
         <div class="category-dot ${info.dot}"></div>
-        <h2>${cat}</h2>
+        <span class="category-title">${cat}</span>
         <span class="category-count">${items.length} 个社团</span>
-        <div class="category-arrow">▼</div>
-      </div>
-      <div class="clubs-grid-wrapper">
+        <span class="category-arrow" aria-hidden="true">▼</span>
+      </button>
+      <div class="clubs-grid-wrapper" id="${panelId}">
       <div class="clubs-grid">`;
-    items.forEach(c => {
+    items.forEach((c, cardIndex) => {
       const isLinked = !!c.link;
       const cardTag = isLinked ? 'a' : 'div';
-      const linkAttr = isLinked ? ` href="${c.link}" class="club-card club-card-link"` : ` class="club-card"`;
+      const linkAttr = isLinked ? ` href="${c.link}" class="club-card club-card-link" style="--card-index:${cardIndex}"` : ` class="club-card" style="--card-index:${cardIndex}"`;
       const linkBadge = isLinked ? '<span class="club-link-badge">查看官网 →</span>' : '';
       html += `<${cardTag}${linkAttr}>
         <div class="club-rank">${c.id}</div>
@@ -594,7 +702,8 @@ function render() {
 // Drawer toggle
 function toggleDrawer(headerEl) {
   const block = headerEl.closest('.category-block');
-  block.classList.toggle('open');
+  const isOpen = block.classList.toggle('open');
+  headerEl.setAttribute('aria-expanded', String(isOpen));
 }
 
 // Level filter
@@ -623,7 +732,53 @@ document.getElementById('searchInput').addEventListener('input', e => {
 
 // Initial render
 render();
+
+// Hero statistics count up once on load.
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('[data-count]').forEach(el => {
+  const target = Number(el.dataset.count);
+  if (reduceMotion) {
+    el.textContent = target;
+    return;
+  }
+  el.textContent = '0';
+  const start = performance.now();
+  const duration = 700;
+  function updateCount(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(target * eased);
+    if (progress < 1) requestAnimationFrame(updateCount);
+  }
+  requestAnimationFrame(updateCount);
+});
+
+const filterSection = document.querySelector('.filter-section');
+if ('IntersectionObserver' in window && !reduceMotion) {
+  const filterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        filterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  filterObserver.observe(filterSection);
+} else {
+  filterSection.classList.add('is-visible');
+}
+
+let scrollTicking = false;
+window.addEventListener('scroll', () => {
+  if (scrollTicking) return;
+  scrollTicking = true;
+  requestAnimationFrame(() => {
+    filterSection.classList.toggle('is-stuck', filterSection.getBoundingClientRect().top <= 0 && window.scrollY > 0);
+    scrollTicking = false;
+  });
+}, { passive: true });
 </script>
 
 </body>
 </html>
+

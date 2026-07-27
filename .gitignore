@@ -4,3 +4,6 @@ club-material/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Local visual brainstorming sessions
+.superpowers/
