@@ -44,11 +44,11 @@
         revealItems.forEach((item) => item.classList.add('visible'));
       }
 
-      const openLightbox = (button) => {
-        const image = button.querySelector('img');
+      const openLightbox = (source) => {
+        const image = source.matches('img') ? source : source.querySelector('img');
         lightboxImage.src = image.currentSrc || image.src;
         lightboxImage.alt = image.alt;
-        lightboxCaption.textContent = button.dataset.caption || image.alt;
+        lightboxCaption.textContent = source.dataset.caption || image.alt;
         lightbox.classList.add('open');
         lightbox.setAttribute('aria-hidden', 'false');
         closeButton.focus();
@@ -60,6 +60,19 @@
       };
 
       document.querySelectorAll('.moment').forEach((button) => button.addEventListener('click', () => openLightbox(button)));
+      document.querySelectorAll('.activity > img, .honor-card:not(.no-image) img').forEach((image) => {
+        image.classList.add('preview-image');
+        image.tabIndex = 0;
+        image.setAttribute('role', 'button');
+        image.setAttribute('aria-label', `查看${image.alt}`);
+        image.addEventListener('click', () => openLightbox(image));
+        image.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openLightbox(image);
+          }
+        });
+      });
       closeButton.addEventListener('click', closeLightbox);
       lightbox.addEventListener('click', (event) => { if (event.target === lightbox) closeLightbox(); });
       window.addEventListener('keydown', (event) => { if (event.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox(); });

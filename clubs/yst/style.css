@@ -132,6 +132,8 @@
     .activity.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1.05fr 1fr; }
     .activity > img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
     .activity.featured > img { height: 100%; aspect-ratio: auto; }
+    .activity > img.preview-image, .honor-card img.preview-image { cursor: zoom-in; }
+    .activity > img.preview-image:focus-visible, .honor-card img.preview-image:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 4px; }
     .activity-info { display: grid; grid-template-columns: 50px 1fr; gap: 14px; padding: 24px; }
     .activity-index { margin: 1px 0 0; color: var(--red); font: 31px/1 Georgia, serif; }
     .activity-meta { margin: 0 0 10px; display: flex; flex-wrap: wrap; gap: 8px 14px; color: var(--red); font-size: 13px; font-weight: 800; }

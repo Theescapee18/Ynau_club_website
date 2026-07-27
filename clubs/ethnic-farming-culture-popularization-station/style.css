@@ -130,6 +130,16 @@ button, a { font: inherit; }
 .story-content > p { margin-bottom: 15px; color: #59665f; font-size: 14px; line-height: 1.95; text-align: justify; }
 .story-content b { display: block; padding: 8px 11px; color: var(--green); border-left: 3px solid var(--bronze); background: var(--paper); font-size: 12px; font-weight: 600; line-height: 1.7; }
 
+.honors-section { background: var(--paper-deep); }
+.honors-heading { margin-bottom: 42px; }
+.honors-heading h2 { color: var(--green-deep); font-family: "STSong", "SimSun", serif; font-size: clamp(31px, 3.6vw, 48px); line-height: 1.28; letter-spacing: .04em; }
+.honors-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.honor-item { position: relative; min-height: 210px; padding: 32px 36px 30px; overflow: hidden; border: 1px solid var(--line); background: #fff; box-shadow: 0 8px 24px rgba(8, 43, 37, .05); }
+.honor-item::after { position: absolute; right: -18px; bottom: -32px; color: rgba(173, 124, 50, .12); content: "誉"; font-family: "STSong", "SimSun", serif; font-size: 150px; line-height: 1; }
+.honor-number { display: block; margin-bottom: 32px; color: var(--bronze); font-family: "STSong", "SimSun", serif; font-size: 28px; }
+.honor-item p { position: relative; z-index: 1; margin-bottom: 11px; color: var(--muted); font-size: 14px; letter-spacing: .08em; }
+.honor-item h3 { position: relative; z-index: 1; max-width: 22em; color: var(--green-deep); font-family: "STSong", "SimSun", serif; font-size: clamp(23px, 2.5vw, 32px); font-weight: 400; line-height: 1.45; letter-spacing: .05em; }
+
 .closing-section { position: relative; padding: 118px 0; overflow: hidden; color: #fff; background: var(--green-deep); }
 .closing-section::before { position: absolute; inset: 0; opacity: .22; background-image: repeating-linear-gradient(135deg, transparent 0 52px, rgba(227, 195, 124, .28) 53px 54px, transparent 55px 108px); content: ""; }
 .closing-content { position: relative; text-align: center; }
@@ -197,7 +207,7 @@ button, a { font: inherit; }
   .about-emblem { order: -1; }
   .about-emblem { width: 112px; }
   .about-emblem > div { width: 112px; height: 112px; }
-  .about-heading h2, .department-heading h2, .gallery-heading h2, .activity-heading h2 { font-size: 30px; }
+  .about-heading h2, .department-heading h2, .gallery-heading h2, .activity-heading h2, .honors-heading h2 { font-size: 30px; }
   .about-copy p { font-size: 14px; }
   .about-copy .lead { font-size: 15px; }
   .stat-grid { grid-template-columns: repeat(2, 1fr); margin-top: 46px; }
@@ -219,6 +229,11 @@ button, a { font: inherit; }
   .story-content h3 { font-size: 21px; }
   .story-content > p { font-size: 13px; }
   .story-meta { font-size: 11px; }
+  .honors-grid { grid-template-columns: 1fr; gap: 12px; }
+  .honor-item { min-height: 176px; padding: 25px 24px; }
+  .honor-number { margin-bottom: 20px; font-size: 24px; }
+  .honor-item p { font-size: 13px; }
+  .honor-item h3 { font-size: 23px; }
   .closing-section { padding: 82px 0; }
   .closing-content h2 { font-size: 39px; }
   .footer-inner { align-items: center; flex-direction: column; text-align: center; }

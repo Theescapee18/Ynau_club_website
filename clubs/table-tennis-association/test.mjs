@@ -26,6 +26,8 @@ test('page preserves the supplied association content and uses every source imag
   }
 
   assert.doesNotMatch(html, /荣誉墙/);
+  assert.match(html, /data-image="image\/image6\.jpeg" data-caption="社团杯双打"/);
+  assert.equal((html.match(/data-caption="交流赛男单"/g) || []).length, 1);
 });
 
 test('page provides a full-screen responsive hero and accessible mobile navigation', () => {
