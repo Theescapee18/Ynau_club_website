@@ -8,16 +8,12 @@
   <style>
     :root {
       --primary: #1B4F72;
-      --primary-dark: #0D2F4F;
       --primary-light: #2E86C1;
       --accent: #2ECC71;
-      --accent-dark: #1A9B52;
       --dark: #1C2833;
       --dark-surface: #273746;
-      --text-light: #F8F9FA;
       --text-muted: #ABB2B9;
       --bg-light: #F7F9FC;
-      --bg-section: #EBF0F5;
       --cat-sxzz: #C0392B;
       --cat-zygy: #1ABC9C;
       --cat-whty: #2980B9;
@@ -391,19 +387,6 @@
       gap: 8px;
       margin-top: 4px;
     }
-    .club-tag {
-      font-size: 11px;
-      padding: 1px 8px;
-      border-radius: 2px;
-      color: #fff;
-      letter-spacing: 0.5px;
-    }
-    .tag-sxzz { background: var(--cat-sxzz); }
-    .tag-zygy { background: var(--cat-zygy); }
-    .tag-whty { background: var(--cat-whty); }
-    .tag-zlhz { background: var(--cat-zlhz); }
-    .tag-xskx { background: var(--cat-xskx); }
-    .tag-cxcy { background: var(--cat-cxcy); }
     .dot-sxzz { background: var(--cat-sxzz); }
     .dot-zygy { background: var(--cat-zygy); }
     .dot-whty { background: var(--cat-whty); }
@@ -479,6 +462,7 @@
       }
       .filter-section { opacity: 1; transform: none; }
     }
+
   </style>
 </head>
 <body>
@@ -493,7 +477,7 @@
     <p class="hero-subtitle">百花齐放 · 社团缤纷</p>
     <div class="hero-stats">
       <div class="hero-stat">
-        <div class="hero-stat-num" data-count="75">75</div>
+        <div class="hero-stat-num" data-count="72">72</div>
         <div class="hero-stat-label">社团总数</div>
       </div>
       <div class="hero-stat">
@@ -546,91 +530,93 @@
 
 <script>
 const clubs = [
-  {id:1,level:"一类社团",name:"国旗护卫队",cat:"思想政治类",link:"clubs/national-flag-guard/index.html"},
-  {id:2,level:"一类社团",name:"基层团建中心",cat:"思想政治类",link:"clubs/grassroots-league-construction/index.html"},
-  {id:3,level:"一类社团",name:"青年发展中心第二课堂项目办",cat:"思想政治类",link:"clubs/second-classroom-project/index.html"},
-  {id:4,level:"一类社团",name:"大学生学习实践延安精神小组",cat:"思想政治类",link:"clubs/yanan-spirit-study-group/index.html"},
-  {id:5,level:"一类社团",name:"军事爱好者协会",cat:"思想政治类",link:"clubs/military-enthusiasts-association/index.html"},
-  {id:6,level:"一类社团",name:"易班工作站",cat:"思想政治类",link:"clubs/yiban-student-workstation/index.html"},
-  {id:7,level:"一类社团",name:"耕读学社",cat:"思想政治类",link:"clubs/gengdu-society/index.html"},
-  {id:8,level:"一类社团",name:"清廉学社",cat:"思想政治类",link:"clubs/qing-lian-xue-she/index.html"},
-  {id:9,level:"一类社团",name:"大学生服务校友志愿者协会",cat:"志愿公益类",link:"clubs/alumni-volunteer-association/index.html"},
-  {id:10,level:"一类社团",name:"青年志愿者协会·红十字会学生分会",cat:"志愿公益类",link:"clubs/qnzyz/index.html"},
-  {id:11,level:"一类社团",name:"青年传媒发展中心",cat:"文化体育类",link:"clubs/youth-media/index.html"},
-  {id:12,level:"一类社团",name:"社团管理中心",cat:"文化体育类",link:"clubs/association-management-center/index.html"},
-  {id:13,level:"一类社团",name:"大学生艺术团",cat:"文化体育类",link:"clubs/yst/index.html"},
-  {id:14,level:"一类社团",name:"大学生合唱团",cat:"文化体育类",link:"clubs/choir/index.html"},
-  {id:15,level:"一类社团",name:"交响乐团",cat:"文化体育类"},
-  {id:16,level:"一类社团",name:"校辩论队",cat:"文化体育类",link:"clubs/debate-team/index.html"},
-  {id:17,level:"一类社团",name:"青春之声广播站",cat:"文化体育类",link:"clubs/youth-voice-radio/index.html"},
-  {id:18,level:"一类社团",name:"校园传媒中心",cat:"文化体育类",link:"clubs/campus-media-center/index.html"},
-  {id:19,level:"一类社团",name:"茶艺团",cat:"文化体育类",link:"clubs/tea-club/index.html"},
-  {id:20,level:"一类社团",name:"心理协会",cat:"自律互助类",link:"clubs/psychological-association/index.html"},
-  {id:21,level:"一类社团",name:"学生自我管理委员会",cat:"自律互助类",link:"clubs/student-self-management-committee/index.html"},
-  {id:22,level:"一类社团",name:"学生管理服务协会",cat:"自律互助类",link:"clubs/student-management-service-association/index.html"},
-  {id:23,level:"一类社团",name:"学生资助与发展协会",cat:"自律互助类",link:"clubs/student-aid-development-association/index.html"},
-  {id:24,level:"二类社团",name:"新农人宣讲团",cat:"思想政治类",link:"clubs/new-farmer-lecture-troupe/index.html"},
-  {id:25,level:"一类社团",name:"创新与实践中心",cat:"创新创业类",link:"clubs/innovation-practice-center/index.html"},
-  {id:26,level:"一类社团",name:"就业创业互助协会",cat:"创新创业类",link:"clubs/employment-entrepreneurship-association/index.html"},
-  {id:27,level:"二类社团",name:"马克思主义理论学习研究会",cat:"思想政治类",link:"clubs/marxism-theory-study-association/index.html"},
-  {id:28,level:"二类社团",name:"青年益教之家",cat:"志愿公益类",link:"clubs/youth-education-home/index.html"},
-  {id:29,level:"二类社团",name:"勤工俭学会",cat:"志愿公益类",link:"clubs/qin-gong-jian-xue-hui/index.html"},
-  {id:30,level:"二类社团",name:"社工之家",cat:"志愿公益类",link:"clubs/social-work-home/index.html"},
-  {id:31,level:"二类社团",name:"昆明市大学生爱心家园协会",cat:"志愿公益类",link:"clubs/love-home-association/index.html"},
-  {id:32,level:"二类社团",name:"小动物爱护者协会",cat:"志愿公益类",link:"clubs/small-animal-lovers-association/index.html"},
-  {id:33,level:"二类社团",name:"绿野社",cat:"志愿公益类",link:"clubs/green-field-society/index.html"},
-  {id:34,level:"二类社团",name:"良师益友协会",cat:"自律互助类"},
-  {id:35,level:"二类社团",name:"民族文化交流与发展协会",cat:"文化体育类",link:"clubs/ethnic-culture-exchange-association/index.html"},
-  {id:36,level:"二类社团",name:"电影协会",cat:"文化体育类",link:"clubs/film-association/index.html"},
-  {id:37,level:"二类社团",name:"晨曦文学社",cat:"文化体育类",link:"clubs/chenxi-literature/index.html"},
-  {id:38,level:"二类社团",name:"AU.ban操舞社团",cat:"文化体育类",link:"clubs/au-ban-dance/index.html"},
-  {id:39,level:"二类社团",name:"HALO滑板社",cat:"文化体育类",link:"clubs/halo-skateboard/index.html"},
-  {id:40,level:"二类社团",name:"乐跑协会",cat:"文化体育类",link:"clubs/running-association/index.html"},
-  {id:41,level:"二类社团",name:"定向运动协会",cat:"文化体育类",link:"clubs/orienteering-sports/index.html"},
-  {id:42,level:"二类社团",name:"健身协会",cat:"文化体育类",link:"clubs/fitness-association/index.html"},
-  {id:43,level:"二类社团",name:"女子足球社",cat:"文化体育类",link:"clubs/women-football-club/index.html"},
-  {id:44,level:"二类社团",name:"跳绳协会",cat:"文化体育类",link:"clubs/jump-rope-association/index.html"},
-  {id:45,level:"二类社团",name:"排球俱乐部",cat:"文化体育类",link:"clubs/volleyball-club/index.html"},
-  {id:46,level:"二类社团",name:"乒乓球协会",cat:"文化体育类",link:"clubs/table-tennis-association/index.html"},
-  {id:47,level:"二类社团",name:"足球裁判协会",cat:"文化体育类",link:"clubs/football-referee-association/index.html"},
-  {id:48,level:"二类社团",name:"武术协会",cat:"文化体育类",link:"clubs/wushu-association/index.html"},
-  {id:49,level:"二类社团",name:"羿羽射艺协会",cat:"文化体育类",link:"clubs/yi-yu-archery/index.html"},
-  {id:50,level:"二类社团",name:"羽毛球协会",cat:"文化体育类",link:"clubs/badminton-association/index.html"},
-  {id:51,level:"二类社团",name:"篮球社",cat:"文化体育类",link:"clubs/basketball-club/index.html"},
-  {id:52,level:"二类社团",name:"现视研动漫社",cat:"文化体育类",link:"clubs/genshiken-anime/index.html"},
-  {id:53,level:"二类社团",name:"惊婳国风古韵社",cat:"文化体育类",link:"clubs/jing-hua-gufeng/index.html"},
-  {id:54,level:"二类社团",name:"旅游协会",cat:"文化体育类",link:"clubs/travel-association/index.html"},
-  {id:55,level:"二类社团",name:"汽车爱好者协会",cat:"文化体育类",link:"clubs/auto-enthusiasts-association/index.html"},
-  {id:56,level:"二类社团",name:"书画协会",cat:"文化体育类",link:"clubs/calligraphy-painting/index.html"},
-  {id:57,level:"二类社团",name:"摄影协会",cat:"文化体育类",link:"clubs/photography-association/index.html"},
-  {id:58,level:"二类社团",name:"演讲与口才协会",cat:"文化体育类",link:"clubs/speech-and-eloquence-association/index.html"},
-  {id:59,level:"二类社团",name:"云咖部落",cat:"文化体育类",link:"clubs/coffee-tribe/index.html"},
-  {id:60,level:"二类社团",name:"食为天协会",cat:"文化体育类",link:"clubs/food-for-heaven-association/index.html"},
-  {id:61,level:"二类社团",name:"棋迷者协会",cat:"文化体育类",link:"clubs/chess-enthusiasts-association/index.html"},
-  {id:62,level:"二类社团",name:"语说云农-外语社",cat:"文化体育类",link:"clubs/yu-shuo-yun-nong-language-society/index.html"},
-  {id:63,level:"二类社团",name:"手工社",cat:"文化体育类",link:"clubs/manual-club/index.html"},
-  {id:64,level:"二类社团",name:"艺趣社",cat:"文化体育类",link:"clubs/yi-qu-society/index.html"},
-  {id:65,level:"二类社团",name:"香料香精协会",cat:"文化体育类",link:"clubs/flavor-fragrance-association/index.html"},
-  {id:66,level:"二类社团",name:"家电义务维修协会",cat:"学术科学类",link:"clubs/home-appliance-repair-association/index.html"},
-  {id:67,level:"二类社团",name:"普通话推广协会",cat:"学术科学类"},
-  {id:68,level:"二类社团",name:"农村发展研究会",cat:"学术科学类",link:"clubs/rural-development-research-association/index.html"},
-  {id:69,level:"一类社团",name:"云南民族农耕文化科普站",cat:"学术科学类",link:"clubs/ethnic-farming-culture-popularization-station/index.html"},
-  {id:70,level:"二类社团",name:"金鸡俱乐部",cat:"学术科学类",link:"clubs/golden-rooster-club/index.html"},
-  {id:71,level:"二类社团",name:"蜜蜂学社",cat:"学术科学类",link:"clubs/bee-society/index.html"},
-  {id:72,level:"二类社团",name:"博源科技协会",cat:"学术科学类",link:"clubs/bo-yuan-tech/index.html"},
-  {id:73,level:"二类社团",name:"寻野昆虫社",cat:"学术科学类",link:"clubs/xunye-insect-society/index.html"},
-  {id:74,level:"二类社团",name:"法治学习社",cat:"学术科学类",link:"clubs/law-publicity-association/index.html"},
-  {id:75,level:"二类社团",name:"科技史读书会",cat:"学术科学类",link:"clubs/tech-history-reading/index.html"},
-  {id:76,level:"二类社团",name:"机甲神农",cat:"学术科学类",link:"clubs/mecha-shennong/index.html"}
+  {level:"一类社团",name:"国旗护卫队",cat:"思想政治类",link:"clubs/national-flag-guard/index.html"},
+  {level:"一类社团",name:"基层团建中心",cat:"思想政治类",link:"clubs/grassroots-league-construction/index.html"},
+  {level:"一类社团",name:"青年发展中心第二课堂项目办",cat:"思想政治类",link:"clubs/second-classroom-project/index.html"},
+  {level:"一类社团",name:"大学生学习实践延安精神小组",cat:"思想政治类",link:"clubs/yanan-spirit-study-group/index.html"},
+  {level:"一类社团",name:"军事爱好者协会",cat:"思想政治类",link:"clubs/military-enthusiasts-association/index.html"},
+  {level:"一类社团",name:"易班工作站",cat:"思想政治类",link:"clubs/yiban-student-workstation/index.html"},
+  {level:"一类社团",name:"耕读学社",cat:"思想政治类",link:"clubs/gengdu-society/index.html"},
+  {level:"一类社团",name:"清廉学社",cat:"思想政治类",link:"clubs/qing-lian-xue-she/index.html"},
+  {level:"一类社团",name:"大学生服务校友志愿者协会",cat:"志愿公益类",link:"clubs/alumni-volunteer-association/index.html"},
+  {level:"一类社团",name:"青年志愿者协会·红十字会学生分会",cat:"志愿公益类",link:"clubs/qnzyz/index.html"},
+  {level:"一类社团",name:"社团管理中心",cat:"文化体育类",link:"clubs/association-management-center/index.html"},
+  {level:"一类社团",name:"高水平艺术团",cat:"文化体育类",link:"clubs/yst/index.html"},
+  {level:"一类社团",name:"青年传媒发展中心",cat:"文化体育类",link:"clubs/youth-media/index.html"},
+  {level:"一类社团",name:"校辩论队",cat:"文化体育类",link:"clubs/debate-team/index.html"},
+  {level:"一类社团",name:"青春之声广播站",cat:"文化体育类",link:"clubs/youth-voice-radio/index.html"},
+  {level:"一类社团",name:"校园传媒中心",cat:"文化体育类",link:"clubs/campus-media-center/index.html"},
+  {level:"一类社团",name:"茶艺团",cat:"文化体育类",link:"clubs/tea-club/index.html"},
+  {level:"一类社团",name:"心理协会",cat:"自律互助类",link:"clubs/psychological-association/index.html"},
+  {level:"一类社团",name:"学生自我管理委员会",cat:"自律互助类",link:"clubs/student-self-management-committee/index.html"},
+  {level:"一类社团",name:"学生管理服务协会",cat:"自律互助类",link:"clubs/student-management-service-association/index.html"},
+  {level:"一类社团",name:"学生资助与发展协会",cat:"自律互助类",link:"clubs/student-aid-development-association/index.html"},
+  {level:"二类社团",name:"新农人宣讲团",cat:"思想政治类",link:"clubs/new-farmer-lecture-troupe/index.html"},
+  {level:"一类社团",name:"创新与实践中心",cat:"创新创业类",link:"clubs/innovation-practice-center/index.html"},
+  {level:"一类社团",name:"就业创业互助协会",cat:"创新创业类",link:"clubs/employment-entrepreneurship-association/index.html"},
+  {level:"二类社团",name:"马克思主义理论学习研究会",cat:"思想政治类",link:"clubs/marxism-theory-study-association/index.html"},
+  {level:"二类社团",name:"青年益教之家",cat:"志愿公益类",link:"clubs/youth-education-home/index.html"},
+  {level:"二类社团",name:"勤工俭学会",cat:"志愿公益类",link:"clubs/qin-gong-jian-xue-hui/index.html"},
+  {level:"二类社团",name:"社工之家",cat:"志愿公益类",link:"clubs/social-work-home/index.html"},
+  {level:"二类社团",name:"昆明市大学生爱心家园协会",cat:"志愿公益类",link:"clubs/love-home-association/index.html"},
+  {level:"二类社团",name:"小动物爱护者协会",cat:"志愿公益类",link:"clubs/small-animal-lovers-association/index.html"},
+  {level:"二类社团",name:"绿野社",cat:"志愿公益类",link:"clubs/green-field-society/index.html"},
+  {level:"二类社团",name:"民族文化交流与发展协会",cat:"文化体育类",link:"clubs/ethnic-culture-exchange-association/index.html"},
+  {level:"二类社团",name:"电影协会",cat:"文化体育类",link:"clubs/film-association/index.html"},
+  {level:"二类社团",name:"晨曦文学社",cat:"文化体育类",link:"clubs/chenxi-literature/index.html"},
+  {level:"二类社团",name:"AU.ban操舞社团",cat:"文化体育类",link:"clubs/au-ban-dance/index.html"},
+  {level:"二类社团",name:"HALO滑板社",cat:"文化体育类",link:"clubs/halo-skateboard/index.html"},
+  {level:"二类社团",name:"乐跑协会",cat:"文化体育类",link:"clubs/running-association/index.html"},
+  {level:"二类社团",name:"定向运动协会",cat:"文化体育类",link:"clubs/orienteering-sports/index.html"},
+  {level:"二类社团",name:"健身协会",cat:"文化体育类",link:"clubs/fitness-association/index.html"},
+  {level:"二类社团",name:"女子足球社",cat:"文化体育类",link:"clubs/women-football-club/index.html"},
+  {level:"二类社团",name:"跳绳协会",cat:"文化体育类",link:"clubs/jump-rope-association/index.html"},
+  {level:"二类社团",name:"排球俱乐部",cat:"文化体育类",link:"clubs/volleyball-club/index.html"},
+  {level:"二类社团",name:"乒乓球协会",cat:"文化体育类",link:"clubs/table-tennis-association/index.html"},
+  {level:"二类社团",name:"足球裁判协会",cat:"文化体育类",link:"clubs/football-referee-association/index.html"},
+  {level:"二类社团",name:"武术协会",cat:"文化体育类",link:"clubs/wushu-association/index.html"},
+  {level:"二类社团",name:"羿羽射艺协会",cat:"文化体育类",link:"clubs/yi-yu-archery/index.html"},
+  {level:"二类社团",name:"羽毛球协会",cat:"文化体育类",link:"clubs/badminton-association/index.html"},
+  {level:"二类社团",name:"篮球社",cat:"文化体育类",link:"clubs/basketball-club/index.html"},
+  {level:"二类社团",name:"现视研动漫社",cat:"文化体育类",link:"clubs/genshiken-anime/index.html"},
+  {level:"二类社团",name:"惊婳国风古韵社",cat:"文化体育类",link:"clubs/jing-hua-gufeng/index.html"},
+  {level:"二类社团",name:"旅游协会",cat:"文化体育类",link:"clubs/travel-association/index.html"},
+  {level:"二类社团",name:"汽车爱好者协会",cat:"文化体育类",link:"clubs/auto-enthusiasts-association/index.html"},
+  {level:"二类社团",name:"书画协会",cat:"文化体育类",link:"clubs/calligraphy-painting/index.html"},
+  {level:"二类社团",name:"摄影协会",cat:"文化体育类",link:"clubs/photography-association/index.html"},
+  {level:"二类社团",name:"演讲与口才协会",cat:"文化体育类",link:"clubs/speech-and-eloquence-association/index.html"},
+  {level:"二类社团",name:"云咖部落",cat:"文化体育类",link:"clubs/coffee-tribe/index.html"},
+  {level:"二类社团",name:"食为天协会",cat:"文化体育类",link:"clubs/food-for-heaven-association/index.html"},
+  {level:"二类社团",name:"棋迷者协会",cat:"文化体育类",link:"clubs/chess-enthusiasts-association/index.html"},
+  {level:"二类社团",name:"语说云农-外语社",cat:"文化体育类",link:"clubs/yu-shuo-yun-nong-language-society/index.html"},
+  {level:"二类社团",name:"手工社",cat:"文化体育类",link:"clubs/manual-club/index.html"},
+  {level:"二类社团",name:"艺趣社",cat:"文化体育类",link:"clubs/yi-qu-society/index.html"},
+  {level:"二类社团",name:"香料香精协会",cat:"文化体育类",link:"clubs/flavor-fragrance-association/index.html"},
+  {level:"二类社团",name:"家电义务维修协会",cat:"学术科学类",link:"clubs/home-appliance-repair-association/index.html"},
+  {level:"二类社团",name:"农村发展研究会",cat:"学术科学类",link:"clubs/rural-development-research-association/index.html"},
+  {level:"一类社团",name:"云南民族农耕文化科普站",cat:"学术科学类",link:"clubs/ethnic-farming-culture-popularization-station/index.html"},
+  {level:"二类社团",name:"金鸡俱乐部",cat:"学术科学类",link:"clubs/golden-rooster-club/index.html"},
+  {level:"二类社团",name:"蜜蜂学社",cat:"学术科学类",link:"clubs/bee-society/index.html"},
+  {level:"二类社团",name:"博源科技协会",cat:"学术科学类",link:"clubs/bo-yuan-tech/index.html"},
+  {level:"二类社团",name:"寻野昆虫社",cat:"学术科学类",link:"clubs/xunye-insect-society/index.html"},
+  {level:"二类社团",name:"法治学习社",cat:"学术科学类",link:"clubs/law-publicity-association/index.html"},
+  {level:"二类社团",name:"科技史读书会",cat:"学术科学类",link:"clubs/tech-history-reading/index.html"},
+  {level:"二类社团",name:"机甲神农",cat:"学术科学类",link:"clubs/mecha-shennong/index.html"}
 ];
 
+const categoryRanks = {};
+clubs.forEach(c => {
+  categoryRanks[c.cat] = (categoryRanks[c.cat] || 0) + 1;
+  c.categoryRank = categoryRanks[c.cat];
+});
+
 const catMap = {
-  "思想政治类": {tag:"tag-sxzz",dot:"dot-sxzz"},
-  "志愿公益类": {tag:"tag-zygy",dot:"dot-zygy"},
-  "文化体育类": {tag:"tag-whty",dot:"dot-whty"},
-  "自律互助类": {tag:"tag-zlhz",dot:"dot-zlhz"},
-  "学术科学类": {tag:"tag-xskx",dot:"dot-xskx"},
-  "创新创业类": {tag:"tag-cxcy",dot:"dot-cxcy"}
+  "思想政治类": {dot:"dot-sxzz"},
+  "志愿公益类": {dot:"dot-zygy"},
+  "文化体育类": {dot:"dot-whty"},
+  "自律互助类": {dot:"dot-zlhz"},
+  "学术科学类": {dot:"dot-xskx"},
+  "创新创业类": {dot:"dot-cxcy"}
 };
 
 const catOrder = ["思想政治类","志愿公益类","文化体育类","自律互助类","学术科学类","创新创业类"];
@@ -681,17 +667,13 @@ function render() {
       <div class="clubs-grid-wrapper" id="${panelId}">
       <div class="clubs-grid">`;
     items.forEach((c, cardIndex) => {
-      const isLinked = !!c.link;
-      const cardTag = isLinked ? 'a' : 'div';
-      const linkAttr = isLinked ? ` href="${c.link}" class="club-card club-card-link" style="--card-index:${cardIndex}"` : ` class="club-card" style="--card-index:${cardIndex}"`;
-      const linkBadge = isLinked ? '<span class="club-link-badge">查看官网 →</span>' : '';
-      html += `<${cardTag}${linkAttr}>
-        <div class="club-rank">${c.id}</div>
+      html += `<a href="${c.link}" class="club-card" style="--card-index:${cardIndex}">
+        <div class="club-rank">${String(c.categoryRank).padStart(2, '0')}</div>
         <div class="club-info">
           <div class="club-name" title="${c.name}">${c.name}</div>
-          ${isLinked ? '<div class="club-meta">' + linkBadge + '</div>' : ''}
+          <div class="club-meta"><span class="club-link-badge">查看官网 →</span></div>
         </div>
-      </${cardTag}>`;
+      </a>`;
     });
     html += `</div></div></div>`;
   });
@@ -781,4 +763,5 @@ window.addEventListener('scroll', () => {
 
 </body>
 </html>
+
 

@@ -101,7 +101,7 @@
 
     .teams-section { background: var(--stage-deep); color: #fff; }
     .teams-section .section-heading > p { color: #d9c7c9; }
-    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(255, 255, 255, .18); border-left: 1px solid rgba(255, 255, 255, .18); }
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255, 255, 255, .18); border-left: 1px solid rgba(255, 255, 255, .18); }
     .team-card { min-height: 210px; padding: 26px 24px; border-right: 1px solid rgba(255, 255, 255, .18); border-bottom: 1px solid rgba(255, 255, 255, .18); background: rgba(255, 255, 255, .035); }
     .team-card strong { display: block; margin-bottom: 16px; color: var(--gold-light); font: 30px/1 Georgia, serif; }
     .team-card h3 { margin: 0 0 10px; font-size: 20px; }
@@ -111,8 +111,11 @@
     .dept-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
     .dept-card { padding: 25px 23px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 12px 28px rgba(93, 48, 25, .08); }
     .dept-card span { display: inline-block; margin-bottom: 18px; color: var(--gold); font: 28px/1 Georgia, serif; }
-    .dept-card h3 { margin: 0 0 10px; font-size: 20px; }
+    .dept-card h3 { margin: 0 0 10px; color: var(--ink); font-size: 20px; }
     .dept-card p { margin: 0; color: #4d444c; font-size: 15px; }
+    .dept-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 7px 16px; background: var(--red); color: #fff; font-size: 13px; font-weight: 700; text-decoration: none; transition: background .2s, transform .2s; }
+    .dept-link:hover { background: var(--red-deep); transform: translateX(3px); }
+    .dept-link span { font-size: 16px; }
 
     .moments-section { background: var(--surface); }
     .moments-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 58px; gap: 10px; }
@@ -132,8 +135,8 @@
     .activity.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1.05fr 1fr; }
     .activity > img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
     .activity.featured > img { height: 100%; aspect-ratio: auto; }
-    .activity > img.preview-image, .honor-card img.preview-image { cursor: zoom-in; }
-    .activity > img.preview-image:focus-visible, .honor-card img.preview-image:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 4px; }
+    .preview-image { cursor: zoom-in; }
+    .preview-image:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 4px; }
     .activity-info { display: grid; grid-template-columns: 50px 1fr; gap: 14px; padding: 24px; }
     .activity-index { margin: 1px 0 0; color: var(--red); font: 31px/1 Georgia, serif; }
     .activity-meta { margin: 0 0 10px; display: flex; flex-wrap: wrap; gap: 8px 14px; color: var(--red); font-size: 13px; font-weight: 800; }

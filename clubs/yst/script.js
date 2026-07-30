@@ -60,7 +60,7 @@
       };
 
       document.querySelectorAll('.moment').forEach((button) => button.addEventListener('click', () => openLightbox(button)));
-      document.querySelectorAll('.activity > img, .honor-card:not(.no-image) img').forEach((image) => {
+      document.querySelectorAll('.activity > img, .honor-card:not(.no-image) img, .closing img').forEach((image) => {
         image.classList.add('preview-image');
         image.tabIndex = 0;
         image.setAttribute('role', 'button');
