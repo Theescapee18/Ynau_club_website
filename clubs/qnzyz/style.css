@@ -597,6 +597,7 @@ img { max-width: 100%; height: auto; display: block; }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
+  cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 .honor-item:hover {

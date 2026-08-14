@@ -39,10 +39,10 @@
 
   if (lightbox && lightboxImg) {
     // 画廊图片点击（兼容新旧两种画廊结构）
-    document.querySelectorAll('.gallery-item, .gallery-thumb').forEach(function (item) {
+    document.querySelectorAll('.gallery-item, .gallery-thumb, .honor-item').forEach(function (item) {
       item.addEventListener('click', function () {
         var img = this.querySelector('img');
-        var caption = this.querySelector('.gallery-caption, span');
+          var caption = this.querySelector('.gallery-caption, .honor-name, span');
         if (img) {
           lightboxImg.src = img.src;
           lightboxImg.alt = img.alt;
@@ -51,6 +51,12 @@
           }
           lightbox.classList.add('open');
           document.body.style.overflow = 'hidden';
+        }
+      });
+      item.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          item.click();
         }
       });
     });
