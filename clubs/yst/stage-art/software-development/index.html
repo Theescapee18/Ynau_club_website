@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>软件开发组 · 艺术团舞美部 — 以真实需求为起点，以可交付成果为终点</title>
+<meta name="description" content="艺术团舞美部软件开发组官方网站：团队介绍、组织架构、发展方向、项目实践与成员作品展示。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ======== 导航 ======== -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="nav-brand-cluster">
+      <a class="back-to-stage" href="../index.html#groups">← 返回舞美部</a>
+      <a class="brand" href="#hero">
+        <span class="brand-mark">&lt;/&gt;</span>
+        <span class="brand-text">
+          <strong>软件开发组</strong>
+          <small>艺术团 · 舞美部</small>
+        </span>
+      </a>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">团队定位</a>
+      <a href="#org">组织架构</a>
+      <a href="#workflow">运行机制</a>
+      <a href="#directions">发展方向</a>
+      <a href="#projects">当前项目</a>
+      <a href="#works">成员作品</a>
+      <a href="#recruit">招新方向</a>
+      <a href="#growth">培养路径</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="打开菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ======== 首屏 ======== -->
+<section class="hero" id="hero">
+  <canvas id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="stage-floor" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <p class="hero-badge reveal"><span class="dot"></span>2026 招新进行中 · 艺术团舞美部 · 软件开发组</p>
+    <h1 class="hero-title reveal">软件开发组</h1>
+    <p class="hero-slogan reveal">让<em>代码</em>走进社团，让<em>创意</em>真正落地</p>
+    <p class="hero-desc reveal">
+      我们不是只聊技术名词的兴趣小组，而是一支真正为社团做内容、做系统、做工具、做创意实现的实践团队。
+      如果你想在大学里找到一群能一起折腾项目、一起成长、一起把想法做出来的人，这里就是你的舞台后台。
+    </p>
+    <div class="hero-points reveal">
+      <span>社团氛围</span>
+      <span>真实项目</span>
+      <span>方向多元</span>
+      <span>成果可见</span>
+    </div>
+    <div class="hero-actions reveal">
+      <a class="btn btn-primary" href="#recruit">查看招新方向</a>
+      <a class="btn btn-ghost" href="#directions">探索六大方向</a>
+    </div>
+    <p class="hero-code reveal" aria-hidden="true">&lt;club&gt;&nbsp;stage&nbsp;·&nbsp;code&nbsp;·&nbsp;design&nbsp;·&nbsp;data&nbsp;&lt;/club&gt;</p>
+    <div class="hero-stats reveal">
+      <div class="stat"><strong data-count="3">0</strong><span>核心部门</span></div>
+      <div class="stat"><strong data-count="6">0</strong><span>发展方向</span></div>
+      <div class="stat"><strong data-count="100">0</strong><span>% 面向真实社团场景</span></div>
+    </div>
+  </div>
+  <a class="hero-scroll" href="#about" aria-label="向下滚动"><span></span></a>
+</section>
+
+<!-- ======== 01 团队定位 ======== -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="sec-no">01</p>
+      <h2>基本信息与团队定位</h2>
+      <p class="sec-sub">比“学技术”更进一步，我们希望做一个真正有作品、有氛围、有归属感的社团团队</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="info-table">
+          <div class="info-row"><span>成立时间</span><strong>2026 年 4 月</strong></div>
+          <div class="info-row"><span>隶属组织</span><strong>艺术团</strong></div>
+          <div class="info-row"><span>所属部门</span><strong>舞美部</strong></div>
+          <div class="info-row"><span>正式名称</span><strong>软件开发组</strong></div>
+        </div>
+        <p>
+          软件开发组面向所有对数字化建设、技术实现、创意表达和项目协作感兴趣的同学开放。
+          在这里，你可以把“想学一点”变成“真的做出来”，把“个人兴趣”变成“团队共创”，
+          也能把自己的能力真正投入到社团内容建设与实际使用场景中。
+        </p>
+        <p>
+          我们强调的不只是会不会写代码，而是能不能在协作中承担任务、解决问题、留下成果。
+          无论你更偏开发、数据、算法、产品、内容整理还是项目推进，都可以在这里找到适合自己的位置。
+        </p>
+        <blockquote class="callout">
+          <strong>核心定位</strong>
+          我们是艺术团舞美部中偏“技术 + 创意实践”的团队，服务社团实际需求，也鼓励成员围绕校园场景做自己的项目。
+          这里既有社团协作的温度，也有项目落地的节奏。
+        </blockquote>
+      </div>
+
+      <div class="values reveal">
+        <h3>我们更看重什么样的成员</h3>
+        <ul class="value-list">
+          <li><i>◆</i><div><strong>有热情</strong><p>愿意主动了解方向、尝试新东西，而不是只停留在“我看看”。</p></div></li>
+          <li><i>◆</i><div><strong>肯投入</strong><p>愿意为团队任务付出时间，把一次参与做成一次真实经历。</p></div></li>
+          <li><i>◆</i><div><strong>能协作</strong><p>愿意沟通、愿意配合、愿意在项目里和别人一起把事情完成。</p></div></li>
+          <li><i>◆</i><div><strong>敢成长</strong><p>允许自己从零开始，但不长期停留在观望状态。</p></div></li>
+          <li><i>◆</i><div><strong>有结果</strong><p>最终用代码、文档、设计、分析、测试或项目推进来证明自己的价值。</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 02 组织架构 ======== -->
+<section class="section section-alt" id="org">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="sec-no">02</p>
+      <h2>组织架构与部门职责</h2>
+      <p class="sec-sub">不是松散分工，而是一支能彼此配合、共同把事情做成的社团团队</p>
+    </div>
+
+    <!-- 组织架构树（原生重绘） -->
+    <div class="org-tree reveal">
+      <div class="org-node org-root">艺术团</div>
+      <div class="org-link"></div>
+      <div class="org-node org-mid">舞美部</div>
+      <div class="org-link"></div>
+      <div class="org-node org-core">软件开发组 <small>成立于 2026 年 4 月</small></div>
+      <div class="org-branches"></div>
+      <div class="org-children">
+        <div class="org-node org-child c-blue">需求部<small>发现问题 · 梳理流程 · 对接需求</small></div>
+        <div class="org-node org-child c-teal">技术部<small>系统开发 · 测试部署 · 运行维护</small></div>
+        <div class="org-node org-child c-gold">智研部<small>文献调研 · 算法研究 · 系统建模</small></div>
+      </div>
+    </div>
+
+    <div class="dept-grid">
+      <article class="dept-card c-blue reveal">
+        <div class="dept-icon">🧭</div>
+        <h3>需求部</h3>
+        <p>像团队的“项目引路人”，负责发现问题、整理想法、对接需求，把零散诉求变成可以真正推进的任务。</p>
+      </article>
+      <article class="dept-card c-teal reveal">
+        <div class="dept-icon">💻</div>
+        <h3>技术部</h3>
+        <p>像团队的“实现中枢”，负责把页面、系统、功能和工具真正做出来，让创意从想法变成可用成果。</p>
+      </article>
+      <article class="dept-card c-gold reveal">
+        <div class="dept-icon">✨</div>
+        <h3>智研部</h3>
+        <p>像团队的“创意策源地”，负责调研、建模、算法与方案探索，为项目带来更强的思路深度和创新空间。</p>
+      </article>
+    </div>
+
+    <blockquote class="callout wide reveal">
+      <strong>部门之间的关系</strong>
+      需求部不是“辅助组”，技术部不是唯一核心，智研部也不只是查资料。
+      三部门分别承担问题定义、方案研究和工程交付职责，共同构成完整项目链路。
+    </blockquote>
+  </div>
+</section>
+
+<!-- ======== 03 运行机制 ======== -->
+<section class="section" id="workflow">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="sec-no">03</p>
+      <h2>项目协作与运行机制</h2>
+      <p class="sec-sub">从一个想法、一条需求，到真正上线、真正可用、真正留下成果</p>
+    </div>
+
+    <!-- 协作闭环（原生重绘） -->
+    <div class="flow reveal">
+      <div class="flow-step">
+        <span class="flow-num n-navy">1</span>
+        <h4>真实需求</h4><p>组织、社团与使用者提出问题</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <span class="flow-num n-blue">2</span>
+        <h4>需求部</h4><p>调研、梳理、形成需求清单</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <span class="flow-num n-gold">3</span>
+        <h4>智研部</h4><p>检索文献、建模、论证方案</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <span class="flow-num n-teal">4</span>
+        <h4>技术部</h4><p>开发、测试、部署与维护</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <span class="flow-num n-blue">5</span>
+        <h4>成果落地</h4><p>系统、开源、竞赛、论文与专利</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <span class="flow-num n-navy">6</span>
+        <h4>反馈迭代</h4><p>收集使用反馈，进入下一轮优化</p>
+      </div>
+    </div>
+    <p class="flow-note reveal">以真实问题为起点，以可交付成果为终点；每个部门都有独立价值，也必须在项目中协同。</p>
+
+    <div class="principle-grid">
+      <div class="principle reveal"><strong>项目立项</strong><p>说明需求来源、目标用户、核心问题、预期成果和计划周期。</p></div>
+      <div class="principle reveal"><strong>任务拆分</strong><p>将项目拆分为需求、研究、设计、开发、测试、部署、文档等可交付任务。</p></div>
+      <div class="principle reveal"><strong>阶段评审</strong><p>在需求确认、原型完成、核心开发、上线验收等节点进行评审。</p></div>
+      <div class="principle reveal"><strong>过程留痕</strong><p>保留需求文档、会议结论、代码提交、实验记录、测试记录和版本说明。</p></div>
+      <div class="principle reveal"><strong>成果归属</strong><p>明确团队项目、成员个人作品和合作项目的归属，不将个人既有作品包装为团队成果。</p></div>
+      <div class="principle reveal"><strong>持续维护</strong><p>上线不是结束，应记录使用反馈、问题修复和后续迭代。</p></div>
+    </div>
+
+    <blockquote class="callout wide reveal">
+      <strong>成员参与方式</strong>
+      成员可根据能力、兴趣和时间条件参与不同环节。技术兴趣发生变化的成员，可以转向需求分析、项目协调、
+      测试验收、内容维护和文档建设；沟通能力较强的成员可承担需求对接与项目推进；喜欢安静钻研的成员可进入
+      算法、智研、数据或技术研发任务。方向调整不等于降低要求，所有岗位都需要明确产出和按时交付。
+    </blockquote>
+  </div>
+</section>
+
+<!-- ======== 04 六大发展方向 ======== -->
+<section class="section section-alt" id="directions">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="sec-no">04</p>
+      <h2>六大发展方向</h2>
+      <p class="sec-sub">不管你偏开发、偏创意、偏研究还是偏数据，都能在这里找到适合自己的方向</p>
+    </div>
+
+    <div class="dir-grid">
+      <article class="dir-card reveal">
+        <div class="dir-img"><img src="image/img_0004_ceeffaa7.jpg" alt="Web与软件工程" loading="lazy"></div>
+        <div class="dir-body">
+          <div class="dir-kicker"><span class="dir-icon">🌐</span><span>热门方向</span></div>
+          <h3>Web 与软件工程</h3>
+          <p>前端、后端、数据库、测试、系统设计与部署</p>
+          <div class="dir-meta">
+            <div><span>可参与项目</span>社团官网、管理系统、数据平台</div>
+            <div><span>成果形式</span>上线系统、开源仓库、技术文档</div>
+          </div>
+          <div class="tags"><em>HTML/CSS/JS</em><em>Vue</em><em>React</em><em>数据库</em></div>
+        </div>
+      </article>
+
+      <article class="dir-card reveal">
+        <div class="dir-img"><img src="image/img_0005_af078e28.jpg" alt="数据分析与数据工程" loading="lazy"></div>
+        <div class="dir-body">
+          <div class="dir-kicker"><span class="dir-icon">📊</span><span>数据方向</span></div>
+          <h3>数据分析与数据工程</h3>
+          <p>数据采集、清洗、统计分析、可视化、数据仓库与挖掘</p>
+          <div class="dir-meta">
+            <div><span>可参与项目</span>活动分析、成员成长分析、公开数据集分析</div>
+            <div><span>成果形式</span>分析报告、可视化看板、数据模型</div>
+          </div>
+          <div class="tags"><em>Python</em><em>可视化</em><em>数据挖掘</em></div>
+        </div>
+      </article>
+
+      <article class="dir-card reveal">
+        <div class="dir-img"><img src="image/img_0006_599aef22.jpg" alt="人工智能与算法" loading="lazy"></div>
+        <div class="dir-body">
+          <div class="dir-kicker"><span class="dir-icon">🤖</span><span>前沿探索</span></div>
+          <h3>人工智能与算法</h3>
+          <p>文本、视觉、小样本学习、模型微调与算法实现</p>
+          <div class="dir-meta">
+            <div><span>可参与项目</span>AI 交互 Demo、公开实验复现、智能功能</div>
+            <div><span>成果形式</span>模型结果、实验报告、代码与论文</div>
+          </div>
+          <div class="tags"><em>NLP</em><em>CV</em><em>模型微调</em></div>
+        </div>
+      </article>
+
+      <article class="dir-card reveal">
+        <div class="dir-img"><img src="image/img_0007_3b912d2a.jpg" alt="云原生与基础设施" loading="lazy"></div>
+        <div class="dir-body">
+          <div class="dir-kicker"><span class="dir-icon">☁️</span><span>系统支撑</span></div>
+          <h3>云原生与基础设施</h3>
+          <p>Linux、Docker、Kubernetes、Nginx 与系统运维</p>
+          <div class="dir-meta">
+            <div><span>可参与项目</span>项目部署、监控、数据库和服务维护</div>
+            <div><span>成果形式</span>部署方案、自动化脚本、运维文档</div>
+          </div>
+          <div class="tags"><em>Linux</em><em>Docker</em><em>K8s</em><em>Nginx</em></div>
+        </div>
+      </article>
+
+      <article class="dir-card reveal">
+        <div class="dir-img"><img src="image/img_0008_9d832ebf.jpg" alt="游戏与交互开发" loading="lazy"></div>
+        <div class="dir-body">
+          <div class="dir-kicker"><span class="dir-icon">🎮</span><span>创意表达</span></div>
+          <h3>游戏与交互开发</h3>
+          <p>HTML5 原型、Godot、Unity、Three.js 与交互设计</p>
+          <div class="dir-meta">
+            <div><span>可参与项目</span>网页玩法原型、小游戏 Demo、三维展示</div>
+            <div><span>成果形式</span>可玩 Demo、机制原型、交互作品</div>
+          </div>
+          <div class="tags"><em>Godot</em><em>Unity</em><em>Three.js</em></div>
+        </div>
+      </article>
+
+      <article class="dir-card reveal">
+        <div class="dir-img"><img src="image/img_0009_31c043fb.jpg" alt="学术研究与竞赛" loading="lazy"></div>
+        <div class="dir-body">
+          <div class="dir-kicker"><span class="dir-icon">🏆</span><span>成果导向</span></div>
+          <h3>学术研究与竞赛</h3>
+          <p>论文阅读、系统建模、算法复现、专利与竞赛训练</p>
+          <div class="dir-meta">
+            <div><span>可参与项目</span>智研课题、算法竞赛、软件应用、数学建模</div>
+            <div><span>成果形式</span>论文、专利、竞赛作品与研究报告</div>
+          </div>
+          <div class="tags"><em>论文</em><em>建模</em><em>竞赛</em></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 05 当前承接项目 ======== -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="sec-no">05</p>
+      <h2>当前承接项目</h2>
+      <p class="sec-sub">这些不是停留在纸面上的设想，而是正在推进、可参与、能留下作品的真实项目</p>
+    </div>
+
+    <article class="proj-card reveal">
+      <div class="proj-img">
+        <img src="image/img_0010_c744d3e4.png" alt="校园社团数字化官网建设计划" loading="lazy">
+      </div>
+      <div class="proj-body">
+        <span class="status st-active">● 持续建设中</span>
+        <h3>校园社团数字化官网建设计划</h3>
+        <p>围绕校内社团展示、内容传播与形象建设需求，完成从策划到上线的完整流程。参与这个项目，你能直观看到自己的工作被真正使用。</p>
+        <div class="proj-meta">
+          <div><span>建议技术</span>HTML / CSS / JavaScript，可根据项目采用 Vue、React、Three.js 及静态部署方案</div>
+          <div><span>参与岗位</span>需求调研、内容整理、UI 与前端开发、测试、部署、项目文档</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="proj-card rev reveal">
+      <div class="proj-img">
+        <img src="image/img_0011_7658ca9a.png" alt="社团排班与成长记录系统建设" loading="lazy">
+      </div>
+      <div class="proj-body">
+        <span class="status st-plan">● 需求调研中</span>
+        <h3>社团排班与成长记录系统建设</h3>
+        <p>围绕活动安排、人员协作、成长记录和资料整理等社团高频场景，建设真正能减轻日常管理压力的数字化工具。</p>
+        <div class="proj-meta">
+          <div><span>建议技术</span>根据实际功能选择 Web 开发、数据库、数据分析或交互技术</div>
+          <div><span>参与岗位</span>需求分析、原型设计、开发测试、数据整理、使用反馈</div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ======== 06 成员项目与作品展示 ======== -->
+<section class="section section-alt" id="works">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="sec-no">06</p>
+      <h2>成员项目与作品展示</h2>
+      <p class="sec-sub">这些作品说明：这里的成员不是“空有兴趣”，而是真的能把想法做出来的人</p>
+    </div>
+
+    <div class="work-grid">
+      <figure class="work-card reveal">
+        <div class="work-img"><img src="image/img_0012_22fd482d.png" alt="软件仓库CI/CD采集开源工具" loading="lazy"></div>
+        <figcaption>
+          <span class="work-tag">成员个人作品</span>
+          <h3>软件仓库 CI/CD 采集开源工具</h3>
+          <p>面向软件仓库的持续集成 / 持续交付数据采集开源工具。</p>
+          <div class="tags"><em>开源工具</em><em>CI/CD</em></div>
+        </figcaption>
+      </figure>
+
+      <figure class="work-card reveal">
+        <div class="work-img"><img src="image/img_0013_e3f1082c.png" alt="多文件格式转Markdown工具" loading="lazy"></div>
+        <figcaption>
+          <span class="work-tag">成员个人作品</span>
+          <h3>多文件格式转 Markdown 工具</h3>
+          <p>支持图片、文字颜色、摘要等内容的多格式转换工具。</p>
+          <div class="tags"><em>效率工具</em><em>格式转换</em></div>
+        </figcaption>
+      </figure>
+
+      <figure class="work-card reveal">
+        <div class="work-img"><img src="image/img_0014_b42da20e.png" alt="经济管理学院线上综合测评系统" loading="lazy"></div>
+        <figcaption>
+          <span class="work-tag">成员个人作品</span>
+          <h3>经济管理学院线上综合测评系统</h3>
+          <p>服务学院综合测评流程的线上管理系统。</p>
+          <div class="tags"><em>管理系统</em><em>Web</em></div>
+        </figcaption>
+      </figure>
+
+      <figure class="work-card reveal">
+        <div class="work-img"><img src="image/img_0015_2b36558d.png" alt="结构方程模型构建" loading="lazy"></div>
+        <figcaption>
+          <span class="work-tag">课程 / 研究项目</span>
+          <h3>结构方程模型构建</h3>
+          <p>基于结构方程模型的建模与验证分析实践。</p>
+          <div class="tags"><em>统计建模</em><em>数据分析</em></div>
+        </figcaption>
+      </figure>
+
+      <figure class="work-card reveal">
+        <div class="work-img"><img src="image/img_0016_5fb1830f.png" alt="随机森林分析" loading="lazy"></div>
+        <figcaption>
+          <span class="work-tag">课程 / 研究项目</span>
+          <h3>随机森林分析</h3>
+          <p>基于随机森林算法的特征重要性与预测分析。</p>
+          <div class="tags"><em>机器学习</em><em>数据分析</em></div>
+        </figcaption>
+      </figure>
+
+      <figure class="work-card reveal">
+        <div class="work-img"><img src="image/img_0017_d25288cb.png" alt="聚类分析" loading="lazy"></div>
+        <figcaption>
+          <span class="work-tag">课程 / 研究项目</span>
+          <h3>聚类分析</h3>
+          <p>无监督聚类方法在真实数据集上的分析应用。</p>
+          <div class="tags"><em>聚类</em><em>数据挖掘</em></div>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 07 招新方向 ======== -->
+<section class="section section-recruit" id="recruit">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="sec-no">07</p>
+      <h2>这次招新，我们希望遇见这样的你</h2>
+      <p class="sec-sub">不要求你一开始就很强，但希望你愿意投入、愿意协作，也愿意把兴趣变成作品</p>
+    </div>
+
+    <div class="recruit-grid">
+      <article class="recruit-card c-blue reveal">
+        <header><h3>内容与需求</h3><div class="quota">01<small>类</small></div></header>
+        <p class="recruit-brief">适合善于表达、整理和沟通推进的同学</p>
+        <p>你可以参与项目需求整理、页面内容策划、资料收集、活动记录和对接沟通，让团队输出更贴近真实场景。</p>
+        <p class="prefer">优先看重：责任心、表达能力、执行推进</p>
+      </article>
+
+      <article class="recruit-card c-teal reveal">
+        <header><h3>开发与实现</h3><div class="quota">02<small>类</small></div></header>
+        <p class="recruit-brief">适合喜欢写代码、搭页面、做功能的同学</p>
+        <p>你可以参与前端页面、后端逻辑、数据处理、部署维护等工作，把社团想法一步步变成真的产品和工具。</p>
+        <p class="prefer">优先看重：学习意愿、实现能力、交付意识</p>
+      </article>
+
+      <article class="recruit-card c-gold reveal">
+        <header><h3>研究与创新</h3><div class="quota">03<small>类</small></div></header>
+        <p class="recruit-brief">适合喜欢钻研、建模、分析和探索新技术的同学</p>
+        <p>你可以参与算法、数据分析、模型应用、方案论证和成果整理，让团队不仅能做出来，也能做得更有深度。</p>
+        <p class="prefer">优先看重：思考能力、研究兴趣、持续投入</p>
+      </article>
+    </div>
+
+    <blockquote class="callout wide reveal">
+      <strong>我们想找的，不只是“已经会的人”</strong>
+      更重要的是：你愿意来、愿意学、愿意做，也愿意和一群同样认真做事的人长期并肩。
+    </blockquote>
+
+    <div class="fit-flow-grid">
+      <div class="fit reveal">
+        <h3>加入后你会得到什么</h3>
+        <ul class="check-list">
+          <li>更明确的方向感，而不是一个人零散摸索</li>
+          <li>和同频同学长期协作的社团归属感</li>
+          <li>真实项目、真实分工、真实产出</li>
+          <li>页面、系统、报告、竞赛或研究成果的积累机会</li>
+          <li>把“参与过”变成“做成过”的经历</li>
+        </ul>
+      </div>
+      <div class="pipeline reveal">
+        <h3>建议参与节奏</h3>
+        <ol class="pipe-list">
+          <li><span>1</span>先了解方向与项目</li>
+          <li><span>2</span>选择适合自己的岗位</li>
+          <li><span>3</span>跟进一次完整任务</li>
+          <li><span>4</span>逐步沉淀个人作品与团队成果</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 08 培养路径 ======== -->
+<section class="section" id="growth">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="sec-no">08</p>
+      <h2>成员培养与成果路径</h2>
+      <p class="sec-sub">加入之后，不只是参与活动，而是逐步形成自己的项目经历与作品积累</p>
+    </div>
+
+    <div class="growth-grid">
+      <div class="growth-col reveal">
+        <h3>🎯 可形成的成果</h3>
+        <ul class="check-list">
+          <li>真实上线的软件系统、网站或功能模块</li>
+          <li>GitHub、Gitee 等平台上的开源项目和技术文档</li>
+          <li>数据分析报告、可视化看板和数据模型</li>
+          <li>人工智能实验结果、模型权重和复现实验报告</li>
+          <li>算法、软件应用、数据分析、数学建模和创新类竞赛作品</li>
+          <li>研究报告、小论文、软件著作权、专利及规范化项目材料</li>
+          <li>以实际任务、代码提交和项目验收为依据的项目实践记录</li>
+        </ul>
+      </div>
+      <div class="growth-col reveal">
+        <h3>🤝 团队能够提供</h3>
+        <ul class="check-list alt">
+          <li>真实项目需求和明确的项目任务</li>
+          <li>固定或可协调的线下交流场所</li>
+          <li>跨方向技术交流与项目协作机会</li>
+          <li>服务器、域名、模型接口、算力、比赛或成果申报等资源支持</li>
+          <li>开源、竞赛、论文、专利和项目证明的成果路径</li>
+          <li>来自团队核心成员、合作同学和相关指导资源的经验支持</li>
+        </ul>
+      </div>
+    </div>
+
+    <blockquote class="callout wide reveal">
+      <strong>成果说明</strong>
+      团队提供项目、条件、指导和申报渠道，但不承诺加入后自动获得论文、专利、证书或竞赛奖项。
+      所有成果以真实投入、实际贡献和正式审核结果为依据。
+    </blockquote>
+  </div>
+</section>
+
+<!-- ======== 页脚 ======== -->
+<footer class="footer" id="contact">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark">&lt;/&gt;</span>
+      <div>
+        <strong>软件开发组</strong>
+        <p>艺术团 · 舞美部 · 成立于 2026 年 4 月</p>
+        <p class="footer-slogan">在社团里做项目，在项目里一起成长</p>
+      </div>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4>快速导航</h4>
+        <a href="#about">团队定位</a>
+        <a href="#directions">发展方向</a>
+        <a href="#projects">当前项目</a>
+        <a href="#works">成员作品</a>
+        <a href="../index.html#groups">返回舞美部</a>
+      </div>
+      <div>
+        <h4>三大部门</h4>
+        <a href="#org">需求部</a>
+        <a href="#org">技术部</a>
+        <a href="#org">智研部</a>
+      </div>
+      <div>
+        <h4>加入我们</h4>
+        <p class="muted">关注艺术团官方招新通知<br>或联系团队同学了解项目详情</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 艺术团舞美部软件开发组 · 本站由软件开发组自主设计与开发</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
