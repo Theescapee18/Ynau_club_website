@@ -848,7 +848,8 @@ body {
 .honor-cert-item img {
   width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
+  object-fit: contain;
+  background: #f7f9fb;
   display: block;
 }
 
