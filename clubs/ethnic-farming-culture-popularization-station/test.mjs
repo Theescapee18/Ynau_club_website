@@ -39,7 +39,7 @@ test('社团列表提供科普站官网入口', () => {
   const clubs = readFileSync(clubsPath, 'utf8');
   assert.match(clubs, /云南民族农耕文化科普站/);
   assert.match(clubs, /ethnic-farming-culture-popularization-station\/index\.html/);
-  assert.match(clubs, /\{id:69,level:"一类社团",name:"云南民族农耕文化科普站",cat:"学术科学类",link:"clubs\/ethnic-farming-culture-popularization-station\/index\.html"\}/);
+  assert.match(clubs, /\{level:"一类社团",name:"云南民族农耕文化科普站",cat:"学术科学类",link:"clubs\/ethnic-farming-culture-popularization-station\/index\.html"\}/);
 });
 
 test('页面图片存放在本社团目录的 image 文件夹中', () => {
