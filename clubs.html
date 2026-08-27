@@ -20,6 +20,7 @@
       --cat-zlhz: #8E44AD;
       --cat-xskx: #E67E22;
       --cat-cxcy: #F1C40F;
+      --cat-public: #D97706;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -239,6 +240,52 @@
       overflow: hidden;
       background: #fff;
     }
+    .category-block[data-cat="社团公益志愿者群"] {
+      border: 1px solid var(--cat-public);
+      background: #fffdf8;
+    }
+    .category-block[data-cat="社团公益志愿者群"] .category-header {
+      background: #fffaf0;
+    }
+    .category-block[data-cat="社团公益志愿者群"] .category-title::after {
+      content: none;
+    }
+    .category-block[data-cat="社团公益志愿者群"] .category-title {
+      font-size: 16px;
+      white-space: nowrap;
+    }
+    .special-entry {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 11px 24px;
+      background: #fffaf0;
+    }
+    .clubs-grid-wrapper > .special-entry {
+      min-height: 0;
+      overflow: hidden;
+    }
+    .category-block[data-cat="社团公益志愿者群"] .clubs-grid-wrapper {
+      display: none;
+      overflow: hidden;
+    }
+    .category-block[data-cat="社团公益志愿者群"].open .clubs-grid-wrapper {
+      display: block;
+    }
+    .special-entry-copy { flex: 1; min-width: 0; color: #7b5b2a; font-size: 12px; line-height: 1.4; }
+    .special-entry-copy strong { display: block; color: #a86400; font-size: 14px; margin-bottom: 1px; }
+    .special-entry-link {
+      flex-shrink: 0;
+      padding: 6px 10px;
+      border-radius: 4px;
+      background: var(--cat-public);
+      color: #fff;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .special-entry-link:hover { background: #b86100; }
     .category-header {
       width: 100%;
       border: 0;
@@ -393,6 +440,7 @@
     .dot-zlhz { background: var(--cat-zlhz); }
     .dot-xskx { background: var(--cat-xskx); }
     .dot-cxcy { background: var(--cat-cxcy); }
+    .dot-public { background: var(--cat-public); }
 
     .no-results {
       text-align: center;
@@ -444,6 +492,11 @@
       .search-box { margin-left: 0; width: 100%; }
       .search-box input { width: 100%; }
       .filter-row { gap: 10px; }
+      .category-block[data-cat="社团公益志愿者群"] .category-title { font-size: 15px; }
+      .special-entry { gap: 8px; padding: 10px 16px; }
+      .special-entry-copy { font-size: 11px; }
+      .special-entry-copy strong { font-size: 13px; }
+      .special-entry-link { padding: 6px 9px; font-size: 11px; white-space: nowrap; }
     }
     @media (max-width: 480px) {
       .hero { height: 500px; }
@@ -481,7 +534,7 @@
         <div class="hero-stat-label">社团总数</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num" data-count="6">6</div>
+        <div class="hero-stat-num" data-count="7">7</div>
         <div class="hero-stat-label">社团类别</div>
       </div>
       <div class="hero-stat">
@@ -515,6 +568,7 @@
       <button class="filter-btn" data-cat="自律互助类">自律互助</button>
       <button class="filter-btn" data-cat="学术科学类">学术科学</button>
       <button class="filter-btn" data-cat="创新创业类">创新创业</button>
+      <button class="filter-btn public-filter-btn" data-cat="社团公益志愿者群">社团公益志愿者群</button>
     </div>
   </div>
 </div>
@@ -554,6 +608,7 @@ const clubs = [
   {level:"二类社团",name:"新农人宣讲团",cat:"思想政治类",link:"clubs/new-farmer-lecture-troupe/index.html"},
   {level:"一类社团",name:"创新与实践中心",cat:"创新创业类",link:"clubs/innovation-practice-center/index.html"},
   {level:"一类社团",name:"就业创业互助协会",cat:"创新创业类",link:"clubs/employment-entrepreneurship-association/index.html"},
+  {level:"服务平台",name:"社团公益志愿者群",cat:"社团公益志愿者群",link:"clubs/public-welfare-volunteer-group/index.html"},
   {level:"二类社团",name:"马克思主义理论学习研究会",cat:"思想政治类",link:"clubs/marxism-theory-study-association/index.html"},
   {level:"二类社团",name:"青年益教之家",cat:"志愿公益类",link:"clubs/youth-education-home/index.html"},
   {level:"二类社团",name:"勤工俭学会",cat:"志愿公益类",link:"clubs/qin-gong-jian-xue-hui/index.html"},
@@ -616,10 +671,11 @@ const catMap = {
   "文化体育类": {dot:"dot-whty"},
   "自律互助类": {dot:"dot-zlhz"},
   "学术科学类": {dot:"dot-xskx"},
-  "创新创业类": {dot:"dot-cxcy"}
+  "创新创业类": {dot:"dot-cxcy"},
+  "社团公益志愿者群": {dot:"dot-public"}
 };
 
-const catOrder = ["文化体育类","思想政治类","志愿公益类","自律互助类","学术科学类","创新创业类"];
+const catOrder = ["文化体育类","思想政治类","志愿公益类","自律互助类","学术科学类","创新创业类","社团公益志愿者群"];
 
 let currentLevel = "all";
 let currentCat = "all";
@@ -658,27 +714,35 @@ function render() {
     const info = catMap[cat];
     const panelId = `club-panel-${groupIndex}`;
     html += `<div class="category-block category-enter" data-cat="${cat}" style="--delay:${groupIndex * 45}ms">
-      <button class="category-header" type="button" aria-expanded="false" aria-controls="${panelId}" onclick="toggleDrawer(this)">
+      <button class="category-header" type="button" aria-expanded="false" aria-controls="${panelId}">
         <div class="category-dot ${info.dot}"></div>
         <span class="category-title">${cat}</span>
-        <span class="category-count">${items.length} 个社团</span>
+        <span class="category-count">${items.length}${cat === '社团公益志愿者群' ? ' 个入口' : ' 个社团'}</span>
         <span class="category-arrow" aria-hidden="true">▼</span>
       </button>
-      <div class="clubs-grid-wrapper" id="${panelId}">
-      <div class="clubs-grid">`;
-    items.forEach((c, cardIndex) => {
-      html += `<a href="${c.link}" class="club-card" style="--card-index:${cardIndex}">
+      <div class="clubs-grid-wrapper" id="${panelId}">`;
+    if (cat === '社团公益志愿者群') {
+      html += `<div class="special-entry"><div class="special-entry-copy"><strong>志愿活动信息专属入口</strong>补志愿时长、了解实践学分，后续招募会在这里发布。</div><a class="special-entry-link" href="${items[0].link}">进入群页面 <span aria-hidden="true">→</span></a></div>`;
+    } else {
+      html += `<div class="clubs-grid">`;
+      items.forEach((c, cardIndex) => {
+        html += `<a href="${c.link}" class="club-card" style="--card-index:${cardIndex}">
         <div class="club-rank">${String(c.categoryRank).padStart(2, '0')}</div>
         <div class="club-info">
           <div class="club-name" title="${c.name}">${c.name}</div>
           <div class="club-meta"><span class="club-link-badge">社团简介 →</span></div>
         </div>
       </a>`;
-    });
-    html += `</div></div></div>`;
+      });
+      html += `</div>`;
+    }
+    html += `</div></div>`;
   });
 
   section.innerHTML = html;
+  section.querySelectorAll('.category-header').forEach(header => {
+    header.addEventListener('click', () => toggleDrawer(header));
+  });
 }
 
 // Drawer toggle
