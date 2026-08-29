@@ -1336,3 +1336,19 @@ button:focus-visible {
   }
   .moments-beat i { transform: none; }
 }
+
+
+/* ===== 加入我们 / 招新咨询 ===== */
+.join-section { padding: clamp(58px, 8vw, 110px) 20px; background: linear-gradient(135deg, #f4f8fb 0%, #fff 58%, #eef7f5 100%); border-top: 1px solid rgba(20, 80, 100, .12); }
+.join-section .join-inner { width: min(1080px, 100%); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 300px); align-items: center; gap: clamp(28px, 7vw, 90px); }
+.join-section .join-kicker { margin: 0 0 10px; color: #16806d; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.join-section h2 { margin: 0 0 14px; color: #18333d; font-size: clamp(28px, 4vw, 46px); line-height: 1.2; }
+.join-section .join-copy { margin: 0 0 22px; color: #526870; font-size: 15px; line-height: 1.8; }
+.join-section .join-qq { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin: 0 0 22px; color: #18333d; font-size: 17px; font-weight: 700; }
+.join-section .join-qq span { color: #16806d; font-size: clamp(24px, 3vw, 34px); letter-spacing: .03em; }
+.join-section .join-action { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; border-radius: 5px; background: #16806d; color: #fff; text-decoration: none; font-weight: 700; transition: background .2s, transform .2s; }
+.join-section .join-action:hover { background: #0f6657; transform: translateY(-2px); }
+.join-section .join-qr-wrap { justify-self: center; width: min(100%, 280px); padding: 16px; background: #fff; border: 1px solid rgba(20, 80, 100, .15); box-shadow: 0 14px 36px rgba(23, 61, 69, .12); text-align: center; }
+.join-section .join-qr { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
+.join-section .join-qr-wrap figcaption { margin-top: 10px; color: #63767d; font-size: 12px; line-height: 1.5; }
+@media (max-width: 700px) { .join-section { padding: 54px 18px; } .join-section .join-inner { grid-template-columns: 1fr; gap: 30px; } .join-section .join-qr-wrap { width: min(64vw, 250px); } .join-section h2 { font-size: clamp(27px, 8vw, 36px); } .join-section .join-copy { font-size: 14px; } }
