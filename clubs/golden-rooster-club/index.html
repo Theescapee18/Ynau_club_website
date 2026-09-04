@@ -191,7 +191,7 @@
           <a class="join-action" href="#join-us">扫码入群 <span aria-hidden="true">↓</span></a>
         </div>
         <figure class="join-qr-wrap">
-          <img class="join-qr" src="image/join-qr.jpg" alt="金鸡俱乐部招新咨询QQ群二维码" loading="lazy">
+          <img class="join-qr" src="image/join-qr.jpg" alt="金鸡俱乐部招新咨询QQ群二维码" loading="lazy" onclick="(function(i){var b=document.getElementById('lightbox'),x=document.getElementById('lightboxImage'),c=document.getElementById('lightboxCaption');if(b&&x){x.src=i.currentSrc||i.src;x.alt=i.alt||'二维码';if(c)c.textContent=i.alt||'二维码';b.setAttribute('aria-hidden','false');b.classList.add('open');if(b.showModal&&!b.open)b.showModal();b.style.position='fixed';b.style.inset='0';b.style.zIndex='99999';b.style.padding='max(56px,8vh) 14px 24px';x.style.maxWidth='92vw';x.style.maxHeight='78vh';x.style.width='auto';x.style.height='auto';x.style.objectFit='contain';var q=b.querySelector('button');if(q){q.style.position='fixed';q.style.top='12px';q.style.right='12px';q.style.zIndex='100000';q.style.display='block';q.style.visibility='visible';}document.body.style.overflow='hidden';}else{var q=document.getElementById('qrPreview');if(!q){q=document.createElement('div');q.id='qrPreview';q.style.cssText='position:fixed;inset:0;z-index:99999;display:grid;place-items:center;padding:56px 14px 24px;background:rgba(10,25,35,.86)';var btn=document.createElement('button');btn.type='button';btn.setAttribute('aria-label','关闭二维码预览');btn.textContent='×';btn.style.cssText='position:fixed;top:12px;right:12px;z-index:100000;width:44px;height:44px;font-size:30px';var im=document.createElement('img');im.style.cssText='max-width:92vw;max-height:78vh;width:auto;height:auto;object-fit:contain;background:#fff';q.appendChild(btn);q.appendChild(im);document.body.appendChild(q);q.addEventListener('click',function(e){if(e.target===q||e.target===btn){q.remove();document.body.style.overflow='';}});}q.querySelector('img').src=i.currentSrc||i.src;q.querySelector('img').alt=i.alt||'二维码';document.body.style.overflow='hidden';}})(this)">
           <figcaption>使用手机扫码加入咨询群</figcaption>
         </figure>
       </div>
@@ -215,4 +215,10 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
+
+
 
