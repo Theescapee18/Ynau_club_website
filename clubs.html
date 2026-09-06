@@ -558,19 +558,6 @@
       <input type="text" id="searchInput" placeholder="搜索社团名称...">
     </div>
   </div>
-  <div class="filter-row" style="margin-top:12px">
-    <span class="filter-label">类别：</span>
-    <div class="filter-btns" id="catFilter">
-      <button class="filter-btn active" data-cat="all">全部</button>
-      <button class="filter-btn" data-cat="文化体育类">文化体育</button>
-      <button class="filter-btn" data-cat="思想政治类">思想政治</button>
-      <button class="filter-btn" data-cat="志愿公益类">志愿公益</button>
-      <button class="filter-btn" data-cat="自律互助类">自律互助</button>
-      <button class="filter-btn" data-cat="学术科学类">学术科学</button>
-      <button class="filter-btn" data-cat="创新创业类">创新创业</button>
-      <button class="filter-btn public-filter-btn" data-cat="社团公益志愿者群">社团公益志愿者群</button>
-    </div>
-  </div>
 </div>
 
 <!-- CLUBS -->
@@ -758,15 +745,6 @@ document.getElementById('levelFilter').addEventListener('click', e => {
   document.querySelectorAll('#levelFilter .filter-btn').forEach(b => b.classList.remove('active'));
   e.target.classList.add('active');
   currentLevel = e.target.dataset.level;
-  render();
-});
-
-// Category filter
-document.getElementById('catFilter').addEventListener('click', e => {
-  if (!e.target.classList.contains('filter-btn')) return;
-  document.querySelectorAll('#catFilter .filter-btn').forEach(b => b.classList.remove('active'));
-  e.target.classList.add('active');
-  currentCat = e.target.dataset.cat;
   render();
 });
 
